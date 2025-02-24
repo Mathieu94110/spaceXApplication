@@ -1,0 +1,28 @@
+.navbar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .navbar-top {
+        text-align: center;
+        flex: 1;
+
+        .logo {
+            margin: 10px 0;
+            padding: 4px;
+
+            img {
+                width: 50px;
+            }
+        }
+
+        ul.menu {
+            margin-top: 20px;
+            padding: 0;
+
+            li {
+                margin: 6px 0;
+            }
+        }
+    }
+}
