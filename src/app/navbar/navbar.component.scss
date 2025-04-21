@@ -1,28 +1,324 @@
 .navbar {
-  display: flex;
-  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100px;
+  display: block;
+  margin: 0;
+  padding: 0;
+  color: #000;
+}
+
+.navbar-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
+  will-change: transform;
+  background-color: #000;
+  -webkit-transform: translate3d(0, -100%, 0);
+  transform: translate3d(0, -100%, 0);
+  -webkit-transition: -webkit-transform .7s cubic-bezier(.19, 1, .22, 1) .15s;
+  transition: -webkit-transform .7s cubic-bezier(.19, 1, .22, 1) .15s;
+  transition: transform .7s cubic-bezier(.19, 1, .22, 1) .15s;
+  transition: transform .7s cubic-bezier(.19, 1, .22, 1) .15s, -webkit-transform .7s cubic-bezier(.19, 1, .22, 1) .15s;
+}
 
-  .navbar-top {
-    text-align: center;
-    flex: 1;
+.navbar-inner {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: left;
+}
 
-    .logo {
-      margin: 10px 0;
-      padding: 4px;
+.navbar-logo {
+  position: absolute;
+  top: 13px;
+  left: 50px;
+  width: 210px;
+  height: auto;
+}
 
-      img {
-        width: 50px;
-      }
-    }
+.navbar-logo-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 
-    ul.menu {
-      margin-top: 20px;
-      padding: 0;
+.navbar-navigation {
+  display: inline-block;
+  left: 285px;
+}
 
-      li {
-        margin: 6px 0;
-      }
-    }
+.navbar-navigation,
+.navbar-navigation-right {
+  position: absolute;
+  top: 40px;
+  height: 30px;
+}
+
+.navbar-nav-links {
+  position: relative;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+}
+
+.navbar-nav-links li {
+  position: relative;
+  display: inline-block;
+  margin: 0 12px;
+}
+
+.navbar-navigation .navbar-nav-links li a,
+.navbar-navigation-right .navbar-nav-links li a {
+  -webkit-transition: opacity .6s linear;
+  transition: opacity .6s linear;
+}
+
+.navbar-nav-links li a {
+  display: block;
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+.navbar-nav-links a {
+  position: relative;
+  font: 14px / 28px D-DIN-Bold, Arial, Verdana, sans-serif;
+  font-weight: 400;
+  font-weight: 500;
+  font-style: normal;
+  color: #fff;
+  text-transform: uppercase;
+  -webkit-transition: color .25s ease;
+  transition: color .25s ease;
+}
+
+.navbar-navigation-right {
+  display: inline-block;
+  right: 85px;
+}
+
+.navbar-navigation-right,
+.navbar-inner {
+  -webkit-transition: opacity .2s linear .1s;
+  transition: opacity .2s linear .1s;
+}
+
+.navbar-menu-close {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease-in-out;
+
+  &.open {
+    opacity: 1;
+    visibility: inherit;
+  }
+}
+
+.navbar-menu,
+.navbar-menu-close {
+  position: fixed;
+  top: 0;
+  height: 100%;
+}
+
+.navbar-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  background-color: #000;
+  z-index: 5;
+  transform: translateX(100%);
+  transition: transform 0.4s ease-in-out;
+  /*   overflow-y: auto; */
+  overflow: hidden;
+
+  &.open {
+    transform: translateX(0);
+  }
+}
+
+.navbar-menu-background {
+  -webkit-transform-origin: left top;
+  transform-origin: left top;
+  display: block;
+  width: 100%;
+  height: 120%;
+  background-color: #000;
+}
+
+.navbar-menu-navigation {
+  position: absolute;
+  top: 75px;
+  right: 50px;
+  width: 250px;
+}
+
+.navbar-menu-navigation .navbar-nav-links li.primary {
+  display: none;
+}
+
+.navbar-menu-navigation .navbar-nav-links li {
+  display: block;
+  margin: 0;
+  text-align: right;
+}
+
+.navbar-nav-links li {
+  position: relative;
+  display: inline-block;
+  margin: 0 12px;
+}
+
+.navbar-hamburger {
+  display: block;
+  top: 50%;
+  right: 50px;
+  width: 16px;
+  height: 16px;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: 2;
+  padding: 0 8px;
+  border: 0;
+  background: 0 0;
+  appeareance: none;
+  -webkit-transition: opacity .2s linear .1s;
+  transition: opacity .2s linear .1s;
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+  text-transform: none;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.navbar-bar {
+  top: 3px;
+  left: 0;
+  background-color: #fff;
+  width: 100%;
+  -webkit-transform-origin: center center;
+  transform-origin: center center;
+  height: 2px;
+  transition: transform 0.4s ease-in-out;
+  -webkit-transition: transform .4s linear .1s;
+}
+
+.navbar-bar1 {
+  translate: none;
+  rotate: none;
+  scale: none;
+  transform: translate(0px, 0px);
+
+  &.open {
+    translate: none;
+    rotate: none;
+    scale: none;
+    transform: translate(0px, 4px) rotate(45deg);
+  }
+}
+
+.navbar-bar2 {
+  top: 7px;
+  translate: none;
+  rotate: none;
+  scale: none;
+  transform: translate(0px, 0px);
+  width: 100%;
+
+  &.open {
+    translate: none;
+    rotate: none;
+    scale: none;
+    transform: translate(8px, 0px);
+    width: 0%;
+  }
+}
+
+.navbar-bar3 {
+  translate: none;
+  rotate: none;
+  scale: none;
+  transform: translate(0px, 0px);
+  top: 11px;
+
+  &.open {
+    transform: translate(0px, -4px) rotate(-45deg);
+  }
+
+}
+
+.navbar-hamburger,
+.navbar-bar {
+  position: absolute;
+  z-index: 6;
+}
+
+a:active,
+a:link,
+a:visited {
+  color: #fff;
+  text-decoration: none;
+}
+
+a:active,
+a:link,
+a:visited {
+  color: #fff;
+  text-decoration: none;
+}
+
+a {
+  font: 16px / 24px D-DIN-Medium, Arial, Verdana, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@media screen and (max-width: 960px) {
+  .navbar-logo {
+    left: 50%;
+    top: 50%;
+    width: 150px;
+    margin-top: -5px;
+    margin-left: 15px;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+
+  .navbar-navigation,
+  .navbar-navigation-right {
+    display: none;
+  }
+
+  .navbar-menu-navigation {
+    top: 90px;
+  }
+
+  .navbar-menu-navigation .navbar-nav-links li.primary {
+    display: block;
+  }
+
+  .primary {
+    display: block;
   }
 }

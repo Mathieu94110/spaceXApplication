@@ -1,18 +1,48 @@
 <div class="navbar">
-  <div class="navbar-top">
-    <div class="logo">
-      <img alt="logo" src="" />
+  <div class="navbar-bg"></div>
+  <div class="navbar-inner">
+    <a href="/" class="navbar-logo" aria-label="SpaceX Homepage">
+      <img alt="SpaceX logo" src="assets/icons/spaceX-logo.png" class="navbar-logo-img" />
+    </a>
+    <div class="navbar-navigation">
+      <ul class="navbar-nav-links">
+        @for(item of navItems; track $index) {
+        <li class="navbar-nav-item">
+          <a [routerLink]="item?.link" [attr.aria-label]="item?.title">
+            {{ item?.title }}
+          </a>
+        </li>
+        {{ item | json }}
+        }
+      </ul>
+
     </div>
   </div>
-  <ul class="menu">
-    <li routerLinkActive="active" routerLink="/home-page">
-      <img
-        alt="home-page"
-        matTooltip="Homepage"
-        malTooltipPosition="right"
-        matTooltipClass="menu-tooltip"
-        src=""
-      />
-    </li>
-  </ul>
+
+  <div class="navbar-navigation-right">
+    <ul class="navbar-nav-links">
+      <li class="navbar-nav-item">
+        <a href="">Shop</a>
+      </li>
+    </ul>
+  </div>
+  <div class="navbar-menu-close" [ngClass]="{ 'open': isMenuOpen }" (click)="toggleMenu()"></div>
+
+  <div class="navbar-menu" [ngClass]="{ 'open': isMenuOpen }" style="background-color: red;">
+    <div class="navbar-menu-background"></div>
+    <div class="navbar-menu-navigation">
+      <ul *ngIf="isMenuOpen" [@listStagger]="navItems.length" class="navbar-nav-links">
+        <li class="navbar-nav-item" *ngFor="let item of navItems">
+          <a href="">{{ item }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <button class="navbar-hamburger" (click)="toggleMenu()">
+    <div class="navbar-bar navbar-bar1" [ngClass]="{ 'open': isMenuOpen }"></div>
+    <div class="navbar-bar navbar-bar2" [ngClass]="{ 'open': isMenuOpen }"></div>
+    <div class="navbar-bar navbar-bar3" [ngClass]="{ 'open': isMenuOpen }"></div>
+  </button>
+
 </div>
