@@ -8,33 +8,27 @@
       <ul class="navbar-nav-links">
         @for(item of navItems; track $index) {
         <li class="navbar-nav-item">
-          <a [routerLink]="item?.link" [attr.aria-label]="item?.title">
-            {{ item?.title }}
+          <a [routerLink]="item.link" [attr.aria-label]="item.title">
+            {{ item.title }}
           </a>
         </li>
-        {{ item | json }}
         }
       </ul>
 
     </div>
   </div>
 
-  <div class="navbar-navigation-right">
-    <ul class="navbar-nav-links">
-      <li class="navbar-nav-item">
-        <a href="">Shop</a>
-      </li>
-    </ul>
-  </div>
   <div class="navbar-menu-close" [ngClass]="{ 'open': isMenuOpen }" (click)="toggleMenu()"></div>
 
-  <div class="navbar-menu" [ngClass]="{ 'open': isMenuOpen }" style="background-color: red;">
+  <div class="navbar-menu" [ngClass]="{ 'open': isMenuOpen }">
     <div class="navbar-menu-background"></div>
     <div class="navbar-menu-navigation">
       <ul *ngIf="isMenuOpen" [@listStagger]="navItems.length" class="navbar-nav-links">
-        <li class="navbar-nav-item" *ngFor="let item of navItems">
-          <a href="">{{ item }}</a>
+        @for(item of navItems;track $index){
+        <li class="navbar-nav-item">
+          <a href="">{{ item.title }}</a>
         </li>
+        }
       </ul>
     </div>
   </div>

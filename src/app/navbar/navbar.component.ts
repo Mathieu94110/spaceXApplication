@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { CommonModule } from '@angular/common';
 import {
@@ -38,7 +38,6 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private readonly router: Router,
-    private readonly cdRef: ChangeDetectorRef,
   ) { }
 
   ngOnInit(): void {
@@ -46,7 +45,6 @@ export class NavbarComponent implements OnInit {
     this.router.events.subscribe(() => {
       this.checkUrl();
     });
-    document.body.style.overflow = this.isMenuOpen ? 'hidden' : 'auto';
   }
 
   checkUrl(): void {
