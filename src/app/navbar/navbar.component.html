@@ -7,32 +7,28 @@
     <div class="navbar-navigation">
       <ul class="navbar-nav-links">
         @for(item of navItems; track $index) {
-        <li class="navbar-nav-item">
+        <li>
           <a [routerLink]="item.link" [attr.aria-label]="item.title">
             {{ item.title }}
           </a>
         </li>
         }
       </ul>
-
     </div>
   </div>
-
   <div class="navbar-menu-close" [ngClass]="{ 'open': isMenuOpen }" (click)="toggleMenu()"></div>
-
   <div class="navbar-menu" [ngClass]="{ 'open': isMenuOpen }">
     <div class="navbar-menu-background"></div>
     <div class="navbar-menu-navigation">
       <ul *ngIf="isMenuOpen" [@listStagger]="navItems.length" class="navbar-nav-links">
         @for(item of navItems;track $index){
-        <li class="navbar-nav-item">
+        <li>
           <a href="">{{ item.title }}</a>
         </li>
         }
       </ul>
     </div>
   </div>
-
   <button class="navbar-hamburger" (click)="toggleMenu()">
     <div class="navbar-bar navbar-bar1" [ngClass]="{ 'open': isMenuOpen }"></div>
     <div class="navbar-bar navbar-bar2" [ngClass]="{ 'open': isMenuOpen }"></div>

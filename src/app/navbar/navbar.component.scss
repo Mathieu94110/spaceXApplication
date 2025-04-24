@@ -43,6 +43,7 @@
   left: 50px;
   width: 210px;
   height: auto;
+  margin-left: 15px;
 }
 
 .navbar-logo-img {
@@ -238,6 +239,10 @@
 
 }
 
+.navbar-hamburger {
+  right: 50px;
+}
+
 .navbar-hamburger,
 .navbar-bar {
   position: absolute;
@@ -257,12 +262,28 @@ a {
   font-style: normal;
 }
 
+/* @media screen and (min-width: 600px) {
+  .navbar-logo {
+    left: 50%;
+  }
+} */
+
+@media screen and (max-width: 600px) {
+  .navbar-logo {
+    left: 50%;
+    margin-left: 0;
+  }
+
+  .navbar-hamburger {
+    right: 20px;
+  }
+}
+
 @media screen and (max-width: 960px) {
   .navbar-logo {
     left: 50%;
     top: 50%;
     width: 150px;
-    margin-left: 15px;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     z-index: 1;
@@ -283,7 +304,6 @@ a {
   .navbar-hamburger {
     display: block;
     top: 50%;
-    right: 50px;
     width: 16px;
     height: 16px;
     -webkit-transform: translateY(-50%);
