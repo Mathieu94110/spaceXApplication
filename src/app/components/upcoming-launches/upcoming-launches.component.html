@@ -1,0 +1,12 @@
+<div class="upcoming-launches">
+  <h2>🚀 Lancements à venir</h2>
+  @if(loading()){
+  <p>Chargement en cours...</p>
+  }@else {
+  @for(launch of launches(); track launch.name){
+  <div>
+    🔸 {{ launch.name }} — {{ launch.date_utc }}
+  </div>
+  }
+  }
+</div>

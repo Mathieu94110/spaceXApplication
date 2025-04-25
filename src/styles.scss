@@ -6,6 +6,8 @@ body {
   min-height: 100VH;
   margin: 0;
   padding: 0;
+
+  background-color: #000;
 }
 
 .h1,
@@ -34,6 +36,11 @@ a:link,
 a:visited {
   color: #fff;
   text-decoration: none;
+}
+
+.active-item {
+  color: #005288;
+  font-weight: 600;
 }
 
 @media screen and (max-width: 960px) {

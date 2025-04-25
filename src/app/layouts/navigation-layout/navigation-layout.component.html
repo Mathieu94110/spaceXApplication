@@ -1,0 +1,38 @@
+<div class="navigation-layout">
+  <div class="navigation-layout-bg"></div>
+  <div class="navigation-layout-inner">
+    <a routerLink="/" class="navigation-layout-logo" aria-label="SpaceX Homepage">
+      <img alt="SpaceX logo" src="assets/icons/spaceX-logo.png" class="navigation-layout-logo-img" />
+    </a>
+    <div class="navigation-layout-navigation">
+      <ul class="navigation-layout-nav-links">
+        @for(item of navLinks(); track $index) {
+        <li routerLinkActive="active-item">
+          <a [routerLink]="item.link" [attr.aria-label]="item.title">
+            {{ item.title }}
+          </a>
+        </li>
+        }
+      </ul>
+    </div>
+  </div>
+  <div class="navigation-layout-menu-close" [ngClass]="{ 'open': isMenuOpen }" (click)="toggleMenu()"></div>
+  <div class="navigation-layout-menu" [ngClass]="{ 'open': isMenuOpen }">
+    <div class="navigation-layout-menu-background"></div>
+    <div class="navigation-layout-menu-navigation">
+      <ul *ngIf="isMenuOpen" [@listStagger]="navLinks().length" class="navigation-layout-nav-links">
+        @for(item of navLinks();track $index){
+        <li routerLinkActive="active-item" [routerLink]="item.link">
+          <a href="">{{ item.title }}</a>
+        </li>
+        }
+      </ul>
+    </div>
+  </div>
+  <button class="navigation-layout-hamburger" (click)="toggleMenu()">
+    <div class="navigation-layout-bar navigation-layout-bar1" [ngClass]="{ 'open': isMenuOpen }"></div>
+    <div class="navigation-layout-bar navigation-layout-bar2" [ngClass]="{ 'open': isMenuOpen }"></div>
+    <div class="navigation-layout-bar navigation-layout-bar3" [ngClass]="{ 'open': isMenuOpen }"></div>
+  </button>
+
+</div>

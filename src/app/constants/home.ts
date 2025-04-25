@@ -1,9 +1,9 @@
 export const HOME_SECTION_ITEMS = [
-  { title: 'starlink mission', subtitle: "lancements à venir", category: 'dragons', textButton: 'regarder' },
-  { title: 'starlink mission', subtitle: "lancements récents", category: 'capsules', textButton: 'regarder' },
-  { title: 'starlink mission', subtitle: "plateformes de lancement", category: 'landpads', textButton: 'regarder' },
-  { title: 'starlink mission', subtitle: "missions", category: 'crew', textButton: 'regarder' },
-  { title: 'Envoi d’humains et de fret dans l’espace', subtitle: "fusées", category: 'launches', textButton: 'regarder' },
+  { title: 'starlink mission', subtitle: "lancements", category: 'launches', link: "/launches", textButton: 'regarder' },
+  { title: 'starlink mission', subtitle: "capsules", category: 'capsules', link: "/capsules", textButton: 'regarder' },
+  { title: 'starlink mission', subtitle: "vaisseau cargo spatial", category: 'dragons', link: "/dragons", textButton: 'regarder' },
+  { title: 'starlink mission', subtitle: "plateformes de lancement", category: 'landpads', link: "/landpads", textButton: 'regarder' },
+  { title: 'starlink mission', subtitle: "missions", category: 'crew', link: "/crew", textButton: 'regarder' },
 ];
 
 
