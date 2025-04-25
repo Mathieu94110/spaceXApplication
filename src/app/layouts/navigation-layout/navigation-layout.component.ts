@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { INaviItem } from 'interfaces/navigation';
 import {
@@ -8,7 +8,7 @@ import {
   style,
   animate,
   query,
-  stagger
+  stagger,
 } from '@angular/animations';
 
 @Component({
@@ -26,13 +26,27 @@ import {
           ]),
         ], { optional: true })
       ])
+    ]),
+    trigger('underlineSlide', [
+      transition(':enter', [
+        style({ transform: 'scaleX(0)', transformOrigin: 'left' }),
+        animate('250ms ease-out', style({ transform: 'scaleX(1)', transformOrigin: 'left' }))
+      ]),
+      transition(':leave', [
+        style({ transformOrigin: 'right' }),
+        animate('250ms ease-in', style({ transform: 'scaleX(0)', transformOrigin: 'right' }))
+      ])
     ])
   ]
 })
 export class NavigationLayoutComponent {
   isMenuOpen = false;
+  hoveredIndex = signal<number | null>(null);
   readonly navLinks = input.required<INaviItem[]>();
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+  setHovered(index: number | null) {
+    this.hoveredIndex.set(index);
   }
 }

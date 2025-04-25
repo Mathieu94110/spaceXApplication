@@ -1,0 +1,4 @@
+<a class="link-button btn" [routerLink]="link()" (mouseenter)="setBtnHover(true)" (mouseleave)="setBtnHover(false)">
+  <div class="link-button-btn-hover" [@buttonBgReveal]="hoveredBtn() ? 'hover' : 'normal'"></div>
+  <span class="link-button-btn-text" [class.hovered]="hoveredBtn()">{{ title() }}</span>
+</a>

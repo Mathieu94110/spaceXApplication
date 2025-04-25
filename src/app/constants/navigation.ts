@@ -7,7 +7,7 @@ export const HOME_NAV_LINKS = [
 ];
 
 export const LAUNCHES_NAV_LINKS = [
-  { title: 'tout', link: '/launches/all' },
+  { title: 'tout', link: '/launches' },
   { title: 'dernier', link: '/launches/latest' },
   { title: 'suivant', link: '/launches/next' },
   { title: 'passés', link: '/launches/past' },

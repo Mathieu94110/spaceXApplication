@@ -8,9 +8,7 @@
         <div class="home-section-inner-content-left-bottom">
           <p class="home-section-inner-content-left-bottom-animate"> {{item.subtitle}} </p>
           <h2> {{item.title}}</h2>
-          <a class="home-section-inner-content-left-bottom-animate-button btn" [routerLink]="item.link">
-            <div class="btn-hover"> </div><span class="btn-text">{{item.textButton}}</span>
-          </a>
+          <app-link-button-layout [title]="item.textButton" [link]="item.link" />
         </div>
       </div>
     </div>

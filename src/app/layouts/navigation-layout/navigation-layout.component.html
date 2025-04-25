@@ -5,11 +5,12 @@
       <img alt="SpaceX logo" src="assets/icons/spaceX-logo.png" class="navigation-layout-logo-img" />
     </a>
     <div class="navigation-layout-navigation">
-      <ul class="navigation-layout-nav-links">
+      <ul class="navigation-layout-nav-links-static">
         @for(item of navLinks(); track $index) {
-        <li routerLinkActive="active-item">
-          <a [routerLink]="item.link" [attr.aria-label]="item.title">
+        <li (mouseenter)="setHovered($index)" (mouseleave)="setHovered(null)" routerLinkActive="active-item">
+          <a [routerLink]="item.link" class="navigation-layout-underline-animated-link">
             {{ item.title }}
+            <span *ngIf="hoveredIndex() === $index" class="navigation-layout-underline-bar" @underlineSlide></span>
           </a>
         </li>
         }
