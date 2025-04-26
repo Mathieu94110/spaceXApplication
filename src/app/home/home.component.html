@@ -5,9 +5,10 @@
     <div class="home-section">
       <span [ngClass]="'home-section-background home-section-background-' + item.category" role="img"> </span>
       <div class="home-section-inner-content">
-        <div class="home-section-inner-content-left-bottom">
-          <p class="home-section-inner-content-left-bottom-animate"> {{item.subtitle}} </p>
-          <h2> {{item.title}}</h2>
+        <div class="home-section-inner-content-left-bottom"
+          [@scrollAnimation]="visibleSections()[$index] ? 'visible' : 'hidden'">
+          <p class="home-section-inner-content-left-bottom-animate">{{ item.subtitle }}</p>
+          <h2>{{ item.title }}</h2>
           <app-link-button-layout [title]="item.textButton" [link]="item.link" />
         </div>
       </div>

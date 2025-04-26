@@ -21,8 +21,8 @@ import {
       transition('* => *', [
         query(':enter', [
           style({ opacity: 0, transform: 'translateY(20px)' }),
-          stagger('100ms', [
-            animate('300ms ease-out', style({ opacity: 1, transform: 'translateY(0)' })),
+          stagger('200ms', [
+            animate('300ms 200ms ease-out', style({ opacity: 1, transform: 'translateY(0)' })),
           ]),
         ], { optional: true })
       ])
