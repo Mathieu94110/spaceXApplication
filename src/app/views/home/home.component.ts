@@ -36,9 +36,11 @@ export class HomeComponent {
 
   constructor() {
     this.visibleSections.set(new Array(this.homeSectionItems.length).fill(false));
-    requestAnimationFrame(() => {
-      this.onScroll(); // trigger first inner-content section animation
-    });
+    if (typeof window !== 'undefined' && typeof requestAnimationFrame !== 'undefined') {
+      requestAnimationFrame(() => {
+        this.onScroll(); // trigger first inner-content section animation
+      });
+    }
   }
 
   @HostListener('window:scroll', [])

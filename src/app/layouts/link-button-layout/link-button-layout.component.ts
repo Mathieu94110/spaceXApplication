@@ -9,8 +9,8 @@ import { RouterModule } from '@angular/router';
   styleUrl: './link-button-layout.component.scss',
   animations: [
     trigger('buttonBgReveal', [
-      state('normal', style({ transform: 'scaleY(0)', transformOrigin: 'top' })), // <- change ici
-      state('hover', style({ transform: 'scaleY(1)', transformOrigin: 'bottom' })), // <- comme avant
+      state('normal', style({ transform: 'scaleY(0)', transformOrigin: 'top' })),
+      state('hover', style({ transform: 'scaleY(1)', transformOrigin: 'bottom' })),
       transition('normal => hover', [
         style({ transformOrigin: 'bottom' }),
         animate('300ms ease-out')

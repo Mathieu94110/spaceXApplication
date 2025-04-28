@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
-import { HomeComponent } from "./home/home.component";
-import { LatestLaunchesComponent } from "./components/latest-launches/latest-launches.component";
+import { HomeComponent } from "./views/home/home.component";
+import { LatestLaunchesComponent } from "./components/latest-launche/latest-launche.component";
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,17 +17,15 @@ export const routes: Routes = [
       {
         path: 'latest',
         component: LatestLaunchesComponent,
-        /*         loadComponent: () => import('./components/latest-launches/latest-launches.component')
-                  .then(m => m.LatestLaunchesComponent) */
       },
       {
         path: 'next',
-        loadComponent: () => import('./components/next-launches/next-launches.component')
+        loadComponent: () => import('./components/next-launche/next-launche.component')
           .then(m => m.NextLaunchesComponent)
       },
       {
         path: 'past',
-        loadComponent: () => import('./components/past-launches/past-launches.component')
+        loadComponent: () => import('./components/past-launche/past-launche.component')
           .then(m => m.PastLaunchesComponent)
       },
       {

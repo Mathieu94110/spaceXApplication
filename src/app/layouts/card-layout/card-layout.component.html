@@ -1,0 +1,33 @@
+@let l = this.launch();
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ l.name }}</mat-card-title>
+    <mat-card-subtitle>{{ l.date_utc | date:'dd/MM/yyyy HH:mm:ss' }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <div class="image-container">
+    <img mat-card-image [src]="l.links?.patch?.large || 'assets/icons/spacex-default-img.jpg'" alt="{{ l.name }}">
+  </div>
+
+  <mat-card-content>
+    <p class="description">
+      {{ l.details || 'Aucune description disponible' | slice: 0:100 }}...
+    </p>
+    <p>Status:
+      <span class="status" [ngClass]="{
+        'upcoming': l.upcoming,
+        'successful': l.success
+      }">
+        {{ l.upcoming ? 'À venir' : 'Terminé' }}
+      </span>
+    </p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <a mat-button disabled={{!l.links?.article}} [href]="l.links?.article" target="_blank">
+      {{l.links?.article ?
+      'Regarder l"article' :"Pas
+      d'article"}}
+    </a>
+  </mat-card-actions>
+</mat-card>

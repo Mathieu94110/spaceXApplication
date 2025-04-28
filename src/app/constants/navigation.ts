@@ -10,6 +10,6 @@ export const LAUNCHES_NAV_LINKS = [
   { title: 'tout', link: '/launches' },
   { title: 'dernier', link: '/launches/latest' },
   { title: 'suivant', link: '/launches/next' },
-  { title: 'passés', link: '/launches/past' },
+  { title: 'précédent', link: '/launches/past' },
   { title: 'à venir', link: '/launches/upcoming' },
 ];

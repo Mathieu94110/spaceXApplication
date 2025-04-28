@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PastLaunchesComponent } from './past-launches.component';
+import { PastLaunchesComponent } from './past-launche.component';
 
 describe('PastLaunchesComponent', () => {
   let component: PastLaunchesComponent;
@@ -10,7 +10,7 @@ describe('PastLaunchesComponent', () => {
     await TestBed.configureTestingModule({
       imports: [PastLaunchesComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(PastLaunchesComponent);
     component = fixture.componentInstance;

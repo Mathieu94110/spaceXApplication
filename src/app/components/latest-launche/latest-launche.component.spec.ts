@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LatestLaunchesComponent } from './latest-launches.component';
+import { LatestLaunchesComponent } from './latest-launche.component';
 
 describe('LatestLaunchesComponent', () => {
   let component: LatestLaunchesComponent;
@@ -10,7 +10,7 @@ describe('LatestLaunchesComponent', () => {
     await TestBed.configureTestingModule({
       imports: [LatestLaunchesComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(LatestLaunchesComponent);
     component = fixture.componentInstance;

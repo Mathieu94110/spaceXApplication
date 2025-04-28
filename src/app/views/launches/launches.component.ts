@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterModule } from '@angular/router';
+import { Component, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { LAUNCHES_NAV_LINKS } from '@app/constants/navigation';
 import { NavigationLayoutComponent } from "../../layouts/navigation-layout/navigation-layout.component";
+import { LaunchesService } from 'services/launches.service';
 
 @Component({
   selector: 'app-launches',
@@ -10,5 +12,30 @@ import { NavigationLayoutComponent } from "../../layouts/navigation-layout/navig
   styleUrl: './launches.component.scss'
 })
 export class LaunchesComponent {
-  protected readonly launchesLinks = LAUNCHES_NAV_LINKS
+  private readonly platformId = inject(PLATFORM_ID);
+  protected readonly launchesService = inject(LaunchesService);
+  protected readonly launchesLinks = LAUNCHES_NAV_LINKS;
+  protected readonly errorMsg = "Il semble qu'il y ait eu un problème lors du chargement de la liste";
+
+  gridCols = 4;
+
+  constructor() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.updateGridCols();
+      window.addEventListener('resize', () => this.updateGridCols());
+    }
+  };
+
+  updateGridCols() {
+    const width = window.innerWidth;
+    if (width > 1200) {
+      this.gridCols = 4;
+    } else if (width > 900) {
+      this.gridCols = 3;
+    } else if (width > 600) {
+      this.gridCols = 2;
+    } else {
+      this.gridCols = 1;
+    }
+  }
 }

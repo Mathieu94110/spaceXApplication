@@ -1,37 +1,27 @@
-import { Component, inject, signal, effect } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LaunchesService } from 'services/launches.service';
-import { ILaunch } from 'interfaces/launches';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { LaunchesComponent } from '@app/views/launches/launches.component';
+import { CardLayoutComponent } from '@app/layouts/card-layout/card-layout.component';
 
 @Component({
   selector: 'app-upcoming-launches',
-  imports: [],
+  imports: [CommonModule, MatProgressSpinnerModule, MatGridListModule, CardLayoutComponent],
   templateUrl: './upcoming-launches.component.html',
   styleUrls: ['./upcoming-launches.component.scss', '../../views/launches/launches.component.scss']
 })
-export class UpcomingLaunchesComponent {
-  protected readonly launchesService = inject(LaunchesService);
+export class UpcomingLaunchesComponent extends LaunchesComponent {
 
-  // 🧠 Signals déclaratifs
-  launches = signal<ILaunch[]>([]);
-  loading = signal(true);
+  launches = computed(() => this.launchesService.upcomingLauncheRessouce.value() || []);
+  launchesIsLoading = computed(() => this.launchesService.upcomingLauncheRessouce.isLoading());
+  launchesError = computed(() => this.launchesService.upcomingLauncheRessouce.error());
 
-  constructor() {
-    effect(() => {
-      this.launchesService.getUpcomingLaunche().subscribe({
-        next: (data) => {
-          this.launches.set(data);
-          this.loading.set(false);
-        },
-        error: (err) => {
-          console.error('Erreur de chargement des lancements :', err);
-          this.loading.set(false);
-        },
-      });
-    });
+  effect() {
+    this.updateGridCols();
+    window.addEventListener('resize', () => this.updateGridCols());
   }
 }
-
 
 
 

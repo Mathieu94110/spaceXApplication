@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NextLaunchesComponent } from './next-launches.component';
+import { NextLaunchesComponent } from './next-launche.component';
 
 describe('NextLaunchesComponent', () => {
   let component: NextLaunchesComponent;
@@ -10,7 +10,7 @@ describe('NextLaunchesComponent', () => {
     await TestBed.configureTestingModule({
       imports: [NextLaunchesComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(NextLaunchesComponent);
     component = fixture.componentInstance;
