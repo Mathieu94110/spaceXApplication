@@ -23,7 +23,7 @@
       <ul *ngIf="isMenuOpen" [@listStagger]="navLinks().length" class="navigation-layout-nav-links">
         @for(item of navLinks();track $index){
         <li routerLinkActive="active-item" [routerLink]="item.link">
-          <a href="">{{ item.title }}</a>
+          <a [routerLink]="item.link">{{ item.title }}</a>
         </li>
         }
       </ul>

@@ -10,6 +10,7 @@ mat-card {
   overflow: hidden;
   transition: box-shadow 0.3s ease;
   background: white;
+  justify-self: center;
 }
 
 mat-card:hover {
