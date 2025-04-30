@@ -1,0 +1,33 @@
+@let launch = this.launch();
+<ng-container>
+  @if (launchIsLoading()) {
+  <div class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div>
+  }
+  @else if (launch) {
+  <div class="launches-launche-wrapper">
+    <app-card-layout class="launches-unique-card">
+      <span card-title>{{launch.name}}</span>
+      <span card-subtitle>{{launch.date_utc | date:'dd/MM/yyyy HH:mm:ss'}}</span>
+      <span card-img><img mat-card-image [src]="launch.links?.patch?.large || 'assets/icons/spacex-default-img.jpg'"
+          alt="{{ launch.name }}" /></span>
+      <span card-description> {{ launch.details || 'Aucune description disponible' | slice: 0:100 }}...
+      </span>
+      <span card-upcoming>
+        {{ launch.upcoming ? 'À venir' : 'Terminé' }}
+      </span>
+      <span card-action>
+        <button mat-button [disabled]="!launch.links?.article" (click)="goToArticle(launch)">
+          {{ launch.links?.article ? "Regarder l'article" : "Pas d'article" }}
+        </button>
+      </span>
+    </app-card-layout>
+  </div>
+  }
+  @else if( launchError()) {
+  <div class="all-launches-full-screen">
+    <h2>{{errorMsg}}</h2>
+  </div>
+  }
+</ng-container>

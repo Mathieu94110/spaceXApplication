@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LatestLaunchesComponent } from './latest-launche.component';
+import { NextLaunchComponent } from './next-launch.component';
 
-describe('LatestLaunchesComponent', () => {
-  let component: LatestLaunchesComponent;
-  let fixture: ComponentFixture<LatestLaunchesComponent>;
+describe('NextLaunchesComponent', () => {
+  let component: NextLaunchComponent;
+  let fixture: ComponentFixture<NextLaunchComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LatestLaunchesComponent]
+      imports: [NextLaunchComponent]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(LatestLaunchesComponent);
+    fixture = TestBed.createComponent(NextLaunchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

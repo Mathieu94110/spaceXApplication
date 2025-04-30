@@ -1,6 +1,5 @@
 import { Routes } from "@angular/router";
 import { HomeComponent } from "./views/home/home.component";
-import { LatestLaunchesComponent } from "./components/latest-launche/latest-launche.component";
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -11,28 +10,41 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        loadComponent: () => import('./components/all-launches/all-launches.component')
+        loadComponent: () => import('./components/launches/all-launches/all-launches.component')
           .then(m => m.AllLaunchesComponent)
       },
       {
         path: 'latest',
-        component: LatestLaunchesComponent,
+        loadComponent: () => import('./components/launches/latest-launch/latest-launch.component')
+          .then(m => m.LatestLaunchComponent)
       },
       {
         path: 'next',
-        loadComponent: () => import('./components/next-launche/next-launche.component')
-          .then(m => m.NextLaunchesComponent)
+        loadComponent: () => import('./components/launches/next-launch/next-launch.component')
+          .then(m => m.NextLaunchComponent)
       },
       {
         path: 'past',
-        loadComponent: () => import('./components/past-launche/past-launche.component')
-          .then(m => m.PastLaunchesComponent)
+        loadComponent: () => import('./components/launches/past-launch/past-launch.component')
+          .then(m => m.PastLaunchComponent)
       },
       {
         path: 'upcoming',
-        loadComponent: () => import('./components/upcoming-launches/upcoming-launches.component')
+        loadComponent: () => import('./components/launches/upcoming-launches/upcoming-launches.component')
           .then(m => m.UpcomingLaunchesComponent)
       },
+    ]
+  },
+  {
+    path: 'capsules',
+    loadComponent: () => import('./views/capsules/capsules.component')
+      .then(m => m.CapsulesComponent),
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./components/capsules/all-capsules/all-capsules.component')
+          .then(m => m.AllCapsulesComponent)
+      }
     ]
   },
   {

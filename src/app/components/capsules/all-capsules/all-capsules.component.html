@@ -1,0 +1,20 @@
+<ng-container>
+  @if (capsulesIsLoading()) {
+  <div class="spinner-container">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+  } @else if (capsules()) {
+  <div class="all-capsules">
+    <span style="color: aliceblue;">{{capsules().length}}</span>
+    <!--     <mat-grid-list [cols]="gridCols" rowHeight="458px" [gutterSize]="'24px'">
+      <mat-grid-tile *ngFor="let launch of capsules()!" [colspan]="1" [rowspan]="1">
+        <app-card-layout [launch]="capsules" class="all-capsules-card" />
+      </mat-grid-tile>
+    </mat-grid-list> -->
+  </div>
+  } @else if (capsulesError()) {
+  <div class="all-capsules-full-screen">
+    <h2>{{errorMsg}}</h2>
+  </div>
+  }
+</ng-container>

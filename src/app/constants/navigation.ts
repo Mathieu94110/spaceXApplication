@@ -13,3 +13,8 @@ export const LAUNCHES_NAV_LINKS = [
   { title: 'précédent', link: '/launches/past' },
   { title: 'à venir', link: '/launches/upcoming' },
 ];
+
+export const CAPSULES_NAV_LINKS = [
+  { title: 'toutes', link: '/launches' },
+  { title: 'rechercher', link: '/launches/latest' }
+];

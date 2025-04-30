@@ -1,0 +1,32 @@
+@if (launchesIsLoading()) {
+<div class="spinner-container">
+  <mat-spinner diameter="50"></mat-spinner>
+</div>
+} @else if (launches()) {
+<div class="all-launches">
+  <mat-grid-list [cols]="gridCols" rowHeight="458px" [gutterSize]="'24px'">
+    <mat-grid-tile *ngFor="let launch of launches()!" [colspan]="1" [rowspan]="1">
+      <app-card-layout class="all-launches-card">
+        <span card-title>{{launch.name}}</span>
+        <span card-subtitle>{{launch.date_utc | date:'dd/MM/yyyy HH:mm:ss'}}</span>
+        <span card-img><img mat-card-image [src]="launch.links?.patch?.large || 'assets/icons/spacex-default-img.jpg'"
+            alt="{{ launch.name }}" /></span>
+        <span card-description> {{ launch.details || 'Aucune description disponible' | slice: 0:100 }}...
+        </span>
+        <span card-upcoming>
+          {{ launch.upcoming ? 'À venir' : 'Terminé' }}
+        </span>
+        <span card-action>
+          <button mat-button [disabled]="!launch.links?.article" (click)="goToArticle(launch)">
+            {{ launch.links?.article ? "Regarder l'article" : "Pas d'article" }}
+          </button>
+        </span>
+      </app-card-layout>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+} @else if (launchesError()) {
+<div class="all-launches-full-screen">
+  <h2>{{errorMsg}}</h2>
+</div>
+}

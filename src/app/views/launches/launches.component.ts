@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { LAUNCHES_NAV_LINKS } from '@app/constants/navigation';
 import { NavigationLayoutComponent } from "../../layouts/navigation-layout/navigation-layout.component";
 import { LaunchesService } from 'services/launches.service';
+import { ILaunch } from 'interfaces/launches';
 
 @Component({
   selector: 'app-launches',
@@ -38,4 +39,8 @@ export class LaunchesComponent {
       this.gridCols = 1;
     }
   }
+  goToArticle(launch: ILaunch) {
+    if (launch.links?.article) window.open(launch.links.article, '_blank')
+  }
+
 }

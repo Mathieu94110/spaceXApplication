@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NextLaunchesComponent } from './next-launche.component';
+import { PastLaunchComponent } from './past-launch.component';
 
-describe('NextLaunchesComponent', () => {
-  let component: NextLaunchesComponent;
-  let fixture: ComponentFixture<NextLaunchesComponent>;
+describe('PastLaunchesComponent', () => {
+  let component: PastLaunchComponent;
+  let fixture: ComponentFixture<PastLaunchComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NextLaunchesComponent]
+      imports: [PastLaunchComponent]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(NextLaunchesComponent);
+    fixture = TestBed.createComponent(PastLaunchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

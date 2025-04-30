@@ -10,7 +10,7 @@ import { CardLayoutComponent } from '@app/layouts/card-layout/card-layout.compon
   standalone: true,
   imports: [CommonModule, MatProgressSpinnerModule, MatGridListModule, CardLayoutComponent],
   templateUrl: './all-launches.component.html',
-  styleUrls: ['./all-launches.component.scss', '../../views/launches/launches.component.scss']
+  styleUrls: ['./all-launches.component.scss', '../../../views/launches/launches.component.scss']
 })
 export class AllLaunchesComponent extends LaunchesComponent {
 

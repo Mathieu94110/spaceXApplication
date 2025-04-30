@@ -6,13 +6,14 @@ import { CardLayoutComponent } from '@app/layouts/card-layout/card-layout.compon
 import { LaunchesComponent } from '@app/views/launches/launches.component';
 
 @Component({
-  selector: 'app-past-launche',
+  selector: 'app-latest-launche',
   imports: [CommonModule, MatProgressSpinnerModule, MatGridListModule, CardLayoutComponent],
-  templateUrl: './past-launche.component.html',
-  styleUrls: ['./past-launche.component.scss', '../../views/launches/launches.component.scss']
+  templateUrl: './latest-launch.component.html',
+  styleUrls: ['./latest-launch.component.scss', '../../../views/launches/launches.component.scss']
 })
-export class PastLaunchesComponent extends LaunchesComponent {
-  launche = computed(() => this.launchesService.pastLauncheResource.value());
-  launcheIsLoading = computed(() => this.launchesService.pastLauncheResource.isLoading());
-  launcheError = computed(() => this.launchesService.pastLauncheResource.error());
+export class LatestLaunchComponent extends LaunchesComponent {
+
+  launch = computed(() => this.launchesService.latestLauncheResource.value());
+  launchIsLoading = computed(() => this.launchesService.latestLauncheResource.isLoading());
+  launchError = computed(() => this.launchesService.latestLauncheResource.error());
 }

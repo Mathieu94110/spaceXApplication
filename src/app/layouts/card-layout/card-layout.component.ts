@@ -11,5 +11,5 @@ import { ILaunch } from 'interfaces/launches';
   styleUrl: './card-layout.component.scss'
 })
 export class CardLayoutComponent {
-  launch = input.required<ILaunch>();
+  /*   launch = input.required<ILaunch>(); */
 }

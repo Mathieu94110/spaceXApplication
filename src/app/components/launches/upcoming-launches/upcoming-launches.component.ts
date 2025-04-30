@@ -9,7 +9,7 @@ import { CardLayoutComponent } from '@app/layouts/card-layout/card-layout.compon
   selector: 'app-upcoming-launches',
   imports: [CommonModule, MatProgressSpinnerModule, MatGridListModule, CardLayoutComponent],
   templateUrl: './upcoming-launches.component.html',
-  styleUrls: ['./upcoming-launches.component.scss', '../../views/launches/launches.component.scss']
+  styleUrls: ['./upcoming-launches.component.scss', '../../../views/launches/launches.component.scss']
 })
 export class UpcomingLaunchesComponent extends LaunchesComponent {
 
