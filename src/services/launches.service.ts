@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, resource } from '@angular/core';
 import { environment } from 'environments/environment';
 import { ILaunch } from 'interfaces/launches';
@@ -8,7 +7,6 @@ import { ILaunch } from 'interfaces/launches';
 })
 export class LaunchesService {
   private launchesUrl = `${environment.apiUrl}/launches`;
-  constructor(private http: HttpClient) { }
 
 
   allLaunchesResource = resource({
