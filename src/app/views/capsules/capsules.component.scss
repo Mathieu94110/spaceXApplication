@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 .all-capsules {
   max-width: 1400px;
   margin: 100px auto;
@@ -7,10 +9,80 @@
   overflow-x: hidden;
 }
 
+mat-grid-list {
+  width: 100%;
+  margin: 0 auto;
+}
+
+mat-grid-tile {
+  display: flex !important;
+  flex-direction: column;
+  padding: 0 !important;
+}
+
+h2 {
+  text-align: center;
+  color: $color-error;
+}
+
+.all-capsules-card,
+.all-capsules-card {
+  width: 100%;
+}
+
 .all-capsules-full-screen {
   height: 100vh;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.capsules-launche-wrapper {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  padding: 0 16px;
+}
+
+.capsules-unique-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.all-capsules-card-stats-container {
+  height: 100%;
+  width: 100%;
+}
+
+.all-capsules-card-stats {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px;
+}
+
+.all-capsules-card-stats-rocket-launch {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  transition: transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.all-capsules-card-stats-rocket-launch:hover mat-icon {
+  transform: scale(1.2) rotate(10deg);
+  color: $color-error;
+  cursor: pointer;
+}
+
+.all-capsules-card-stats-rocket-launch-text {
+  margin-right: 20px;
+}
+
+@media screen and (min-width: 600px) {
+  .capsules-unique-card {
+    min-width: 360px;
+  }
 }

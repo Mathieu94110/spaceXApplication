@@ -13,11 +13,11 @@
             alt="{{ launch.name }}" /></span>
         <span card-description> {{ launch.details || 'Aucune description disponible' | slice: 0:100 }}...
         </span>
-        <span card-upcoming>
+        <span card-upcoming [ngClass]="launch.upcoming ? 'neutral-color' : 'success-color'">
           {{ launch.upcoming ? 'À venir' : 'Terminé' }}
         </span>
         <span card-action>
-          <button mat-button [disabled]="!launch.links?.article" (click)="goToArticle(launch)">
+          <button mat-raised-button [disabled]="!launch.links?.article" (click)="goToArticle(launch)">
             {{ launch.links?.article ? "Regarder l'article" : "Pas d'article" }}
           </button>
         </span>

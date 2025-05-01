@@ -22,10 +22,11 @@ mat-grid-tile {
 
 h2 {
   text-align: center;
-  color: red;
+  color: $color-error;
 }
 
-.all-launches-card {
+.all-launches-card,
+.all-capsules-card {
   width: 100%;
 }
 

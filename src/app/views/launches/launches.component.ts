@@ -42,5 +42,4 @@ export class LaunchesComponent {
   goToArticle(launch: ILaunch) {
     if (launch.links?.article) window.open(launch.links.article, '_blank')
   }
-
 }

@@ -15,6 +15,6 @@ export const LAUNCHES_NAV_LINKS = [
 ];
 
 export const CAPSULES_NAV_LINKS = [
-  { title: 'toutes', link: '/launches' },
-  { title: 'rechercher', link: '/launches/latest' }
+  { title: 'toutes', link: '/capsules' },
+  { title: 'rechercher', link: '/capsules/search' }
 ];

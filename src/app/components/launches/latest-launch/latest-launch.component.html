@@ -17,8 +17,10 @@
         {{ launch.upcoming ? 'À venir' : 'Terminé' }}
       </span>
       <span card-action>
-        <button mat-button [disabled]="!launch.links?.article" (click)="goToArticle(launch)">
-          {{ launch.links?.article ? "Regarder l'article" : "Pas d'article" }}
+        <button mat-raised-button [disabled]="!launch.links?.article" disabledInteractive
+          matTooltip="Aucun article disponible !" (click)="goToArticle(launch)">{{ launch.links?.article ? "Regarder
+          l'article" : "Pas d'article"
+          }}
         </button>
       </span>
     </app-card-layout>

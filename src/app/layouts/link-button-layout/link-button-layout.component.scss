@@ -1,7 +1,9 @@
+@use 'variables' as *;
+
 .link-button {
   position: relative;
   display: inline-block;
-  color: #000;
+  color: $color-black;
   overflow: hidden;
   transition: color 0.3s ease;
   z-index: 0;
