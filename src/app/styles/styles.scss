@@ -52,10 +52,11 @@ a:visited {
 }
 
 .spinner-container {
-  height: calc(100vh - $navbar-height);
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 60vh;
+  width: 100%;
 }
 
 .color-blue {

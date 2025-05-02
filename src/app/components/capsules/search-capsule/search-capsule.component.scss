@@ -1,10 +1,5 @@
 @use 'variables' as *;
 
-.capsules-overflow {
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
 .search-page {
   display: flex;
   flex-direction: column;

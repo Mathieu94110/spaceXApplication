@@ -1,9 +1,8 @@
 @let launch = this.launch();
 <ng-container>
-  <!-- Si le chargement est en cours, affiche le spinner -->
   @if (launchIsLoading()) {
   <div class="spinner-container">
-    <mat-spinner></mat-spinner>
+    <mat-spinner diameter="50"></mat-spinner>
   </div>
   } @else if (launch) {
   <div class="launches-launche-wrapper">

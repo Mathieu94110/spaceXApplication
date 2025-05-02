@@ -1,4 +1,4 @@
-<div class="all-capsules capsules-overflow">
+<div class="search-capsules">
   <div class="search-page" [ngClass]="{ 'full-height': searchCapsulesList().length > 0 }">
     <mat-toolbar color="primary" class="toolbar">
       <span class="vertical-center"><mat-icon>search</mat-icon> Rechercher une capsule</span>
@@ -12,7 +12,6 @@
           <mat-icon>search</mat-icon>
         </button>
       </mat-form-field>
-      <button mat-raised-button color="accent" (click)="onSearch()">Rechercher</button>
     </div>
 
     @if(searchCapsulesList().length > 0){
@@ -31,9 +30,19 @@
       }
     </div>
     }
-    @if(!searchCapsulesIsLoading() && searchCapsulesList().length === 0 && searchTerm()) {
+    @if(searchCapsulesIsLoading()){
+    <div class="spinner-container">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+    }
+    @if(showNoResultsMessage()) {
     <div>
       <p>Aucun résultat trouvé pour "{{ searchTerm() }}"</p>
+    </div>
+    }
+    @if(searchCapsulesError()){
+    <div>
+      <p class="error">Une erreur est survenue : {{ searchCapsulesErrorMessage() }}</p>
     </div>
     }
     <app-pagination-layout [hasData]="searchCapsulesList().length > 0" [isPrevButtonVisible]="shouldShowPrevButton()"

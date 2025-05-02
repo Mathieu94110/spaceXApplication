@@ -55,10 +55,12 @@ export class CapsulesService {
   });
 
   setCapsuleResearch(query: string) {
-    this.searchQuery.set(query);
-    this.page.set(1);
+    if (this.searchQuery() !== query) {
+      this.searchQuery.set(query);
+      this.page.set(1);
+    }
+    this.searchCapsuleResource.reload();
   }
-
   nextPage() {
     this.page.set(this.page() + 1);
   }
@@ -71,6 +73,11 @@ export class CapsulesService {
     this.page.set(0);
     this.searchCapsuleResource.reload();
   }
+
+  currentSearchQuery() {
+    return this.searchQuery();
+  }
+
   get totalPages() {
     const result = this.searchCapsuleResource.value();
     return result ? result.totalPages : 1;
