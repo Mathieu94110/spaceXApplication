@@ -2,9 +2,9 @@
 
 .all-launches {
   max-width: 1400px;
-  margin: 100px auto;
+  margin: 100px auto 50px auto;
   padding: 0 16px;
-  height: calc(100vh - #{ $navbar-height * 2 });
+  height: calc(100vh - #{ $navbar-height * 1.5 });
   overflow-y: auto;
   overflow-x: hidden;
 }

@@ -1,48 +1,42 @@
-<div class="all-capsules">
-  <div class="search-page">
+<div class="all-capsules capsules-overflow">
+  <div class="search-page" [ngClass]="{ 'full-height': searchCapsulesList().length > 0 }">
     <mat-toolbar color="primary" class="toolbar">
-      <span> <mat-icon>search</mat-icon> Rechercher une capsule</span>
+      <span class="vertical-center"><mat-icon>search</mat-icon> Rechercher une capsule</span>
     </mat-toolbar>
 
     <div class="search-container">
       <mat-form-field appearance="outline" class="search-input">
-        <input matInput type="text" placeholder="Enter capsule name or ID" [(ngModel)]="searchTerm"
+        <input matInput type="text" placeholder="Entrez le nom ou ID de la capsule" [(ngModel)]="searchTerm"
           (keyup.enter)="onSearch()">
-        <ng-container>
-        </ng-container>
-        <button matSuffix mat-icon-button aria-label="Search">
+        <button matSuffix mat-icon-button aria-label="Search" (click)="onSearch()">
           <mat-icon>search</mat-icon>
         </button>
       </mat-form-field>
-      <button mat-raised-button color="accent" (click)="onSearch()">Search</button>
+      <button mat-raised-button color="accent" (click)="onSearch()">Rechercher</button>
     </div>
-    @if(capsulesList().length > 0){
+
+    @if(searchCapsulesList().length > 0){
     <div class="results-container">
-      @for(capsule of capsulesList(); track capsule.id){
-      <mat-card class="capsule-card">
-        <mat-card-title>{{ capsule.serial}}</mat-card-title>
-        <mat-card-subtitle>Status: {{ capsule.type }}</mat-card-subtitle>
+      @for(capsule of searchCapsulesList(); track capsule.id){
+      <mat-card class="search-capsule-card">
+        <mat-card-title>{{ capsule.serial }}</mat-card-title>
+        <mat-card-subtitle>{{ capsule.type }}</mat-card-subtitle>
         <mat-card-content>
-          <p>{{ capsule.reuse_count }} reuse count</p>
-          <p>{{ capsule.water_landings }} water landings</p>
-          <p>{{ capsule.land_count }} land landings</p>
-          <p>Status: {{ capsule.status }}</p>
-          <p>Update: {{ capsule.last_update }}</p>
+          <div class="info-line"><strong>Reuse count:</strong> {{ capsule.reuse_count }}</div>
+          <div class="info-line"><strong>Water landings:</strong> {{ capsule.water_landings }}</div>
+          <div class="info-line"><strong>Status:</strong> {{ capsule.status }}</div>
+          <div class="info-line"><strong>Update:</strong> {{ capsule.last_update }}</div>
         </mat-card-content>
       </mat-card>
       }
     </div>
-    }@else{
-    @if(searchTerm()){
-    <div class="no-results" *ngIf="searchTerm">
+    }
+    @if(!searchCapsulesIsLoading() && searchCapsulesList().length === 0 && searchTerm()) {
+    <div>
       <p>Aucun résultat trouvé pour "{{ searchTerm() }}"</p>
     </div>
-    }@else {
-    <div class="no-results" *ngIf="searchTerm">
-      <p>Indiquez votre recherche</p>
-    </div>
     }
-
-    }
+    <app-pagination-layout [hasData]="searchCapsulesList().length > 0" [isPrevButtonVisible]="shouldShowPrevButton()"
+      [isNextButtonVisible]="shouldShowNextButton()" (previousClicked)="prevPage()" (nextClicked)="nextPage()" />
   </div>
 </div>

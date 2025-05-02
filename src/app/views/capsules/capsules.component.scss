@@ -2,11 +2,12 @@
 
 .all-capsules {
   max-width: 1400px;
-  margin: 100px auto;
+  margin: 100px auto 50px auto;
   padding: 0 16px;
-  height: calc(100vh - #{ $navbar-height * 2 });
-  overflow-y: auto;
-  overflow-x: hidden;
+  height: calc(100vh - #{ $navbar-height * 1.5 });
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 mat-grid-list {

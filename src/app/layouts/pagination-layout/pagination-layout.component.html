@@ -1,0 +1,9 @@
+@if(hasData()){
+<div class="pagination">
+  @if(isPrevButtonVisible()){
+  <button mat-raised-button (click)="prevPage()">Précédent</button>
+  }@if(isNextButtonVisible()){
+  <button mat-raised-button (click)="nextPage()">Suivant</button>
+  }
+</div>
+}
