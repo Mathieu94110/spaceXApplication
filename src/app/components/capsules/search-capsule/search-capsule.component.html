@@ -1,11 +1,7 @@
 <div class="search-capsules">
   <div class="search-page" [ngClass]="{ 'full-height': searchCapsulesList().length > 0 }">
-    <mat-toolbar color="primary" class="toolbar">
-      <span class="vertical-center"><mat-icon>search</mat-icon> Rechercher une capsule</span>
-    </mat-toolbar>
-
     <div class="search-container">
-      <mat-form-field appearance="outline" class="search-input">
+      <mat-form-field appearance="outline" class="search-input" hideRequiredMarker>
         <input matInput type="text" placeholder="Entrez le nom ou ID de la capsule" [(ngModel)]="searchTerm"
           (keyup.enter)="onSearch()">
         <button matSuffix mat-icon-button aria-label="Search" (click)="onSearch()">
@@ -14,37 +10,32 @@
       </mat-form-field>
     </div>
 
-    @if(searchCapsulesList().length > 0){
+    @if(searchCapsulesList().length > 0) {
     <div class="results-container">
       @for(capsule of searchCapsulesList(); track capsule.id){
-      <mat-card class="search-capsule-card">
-        <mat-card-title>{{ capsule.serial }}</mat-card-title>
-        <mat-card-subtitle>{{ capsule.type }}</mat-card-subtitle>
-        <mat-card-content>
-          <div class="info-line"><strong>Reuse count:</strong> {{ capsule.reuse_count }}</div>
-          <div class="info-line"><strong>Water landings:</strong> {{ capsule.water_landings }}</div>
-          <div class="info-line"><strong>Status:</strong> {{ capsule.status }}</div>
-          <div class="info-line"><strong>Update:</strong> {{ capsule.last_update }}</div>
-        </mat-card-content>
-      </mat-card>
+      <app-search-card-layout [capsuleInfo]="capsule" />
       }
     </div>
     }
-    @if(searchCapsulesIsLoading()){
+
+    @if(searchCapsulesIsLoading()) {
     <div class="spinner-container">
       <mat-spinner diameter="50"></mat-spinner>
     </div>
     }
-    @if(showNoResultsMessage()) {
-    <div>
-      <p>Aucun résultat trouvé pour "{{ searchTerm() }}"</p>
+
+    @if(!searchCapsulesIsLoading() && showNoResultsMessage()) {
+    <div class="no-results-message">
+      <p>Aucun résultat trouvé pour "{{ lastCompletedSearchTerm() }}"</p>
     </div>
     }
-    @if(searchCapsulesError()){
+
+    @if(searchCapsulesError()) {
     <div>
       <p class="error">Une erreur est survenue : {{ searchCapsulesErrorMessage() }}</p>
     </div>
     }
+
     <app-pagination-layout [hasData]="searchCapsulesList().length > 0" [isPrevButtonVisible]="shouldShowPrevButton()"
       [isNextButtonVisible]="shouldShowNextButton()" (previousClicked)="prevPage()" (nextClicked)="nextPage()" />
   </div>

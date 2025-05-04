@@ -1,8 +1,13 @@
 .pagination {
-  margin: 6px auto;
+  padding-left: 1rem;
 }
 
-@media screen and (min-width: 960px) {
+.pagination button {
+  margin-right: 16px;
+  padding: 1rem;
+}
+
+@media screen and (min-width: 1600px) {
   .pagination {
     margin: 20px auto;
   }
