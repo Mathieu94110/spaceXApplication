@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-pagination-layout',
+  standalone: true,
   imports: [MatButtonModule],
   templateUrl: './pagination-layout.component.html',
   styleUrl: './pagination-layout.component.scss'

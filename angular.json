@@ -111,6 +111,11 @@
             "styles": [
               "src/app/styles/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/app/styles"
+              ]
+            },
             "scripts": []
           }
         },
