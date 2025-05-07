@@ -53,6 +53,23 @@ export const routes: Routes = [
     ]
   },
   {
+    path: 'dragons',
+    loadComponent: () => import('./views/dragons/dragons.component')
+      .then(m => m.DragonsComponent),
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./components/dragons/all-dragons/all-dragons.component')
+          .then(m => m.AllDragonsComponent)
+      },
+      {
+        path: 'search',
+        loadComponent: () => import('./components/dragons/search-dragon/search-dragon.component')
+          .then(m => m.SearchDragonComponent)
+      }
+    ]
+  },
+  {
     path: '',
     redirectTo: '',
     pathMatch: 'full'

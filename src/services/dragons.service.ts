@@ -1,26 +1,27 @@
 import { Injectable, computed, effect, signal, resource } from '@angular/core';
 import { EMPTY_RESOURCE } from '@app/constants';
-import { DEFAULT_CAPSULE_LIMIT } from '@app/constants/capsules';
+import { DEFAULT_DRAGON_LIMIT } from '@app/constants/dragons';
 import { environment } from 'environments/environment';
-import { ICapsule } from 'interfaces/capsules';
 import { IRessource } from 'interfaces';
+import { IDragon } from 'interfaces/dragons';
 
 @Injectable({ providedIn: 'root' })
-export class CapsulesService {
+export class DragonsService {
   constructor() {
     effect(() => {
       const queryText = this.searchQuery();
       const page = this.page();
-      this.searchCapsuleResource.reload();
+      this.searchDragonResource.reload();
     });
   }
-  private capsulesUrl = `${environment.apiUrl}/capsules`;
+
+  private capsulesUrl = `${environment.apiUrl}/dragons`;
   private searchQuery = signal('');
   private page = signal(1);
 
 
-  allCapsulesResource = resource({
-    loader: async (): Promise<ICapsule[]> =>
+  allDragonsResource = resource({
+    loader: async (): Promise<IDragon[]> =>
       (await fetch(`${this.capsulesUrl}`)).json(),
   });
 
@@ -29,8 +30,8 @@ export class CapsulesService {
     page: this.page()
   }));
 
-  searchCapsuleResource = resource({
-    loader: async (): Promise<IRessource<ICapsule>> => {
+  searchDragonResource = resource({
+    loader: async (): Promise<IRessource<IDragon>> => {
       const { queryText, page } = this.requestParams();
       const res = await fetch(`${this.capsulesUrl}/query`, {
         method: 'POST',
@@ -45,28 +46,28 @@ export class CapsulesService {
             }
             : {},
           options: {
-            limit: DEFAULT_CAPSULE_LIMIT,
+            limit: DEFAULT_DRAGON_LIMIT,
             page: page
           }
         })
       });
 
-      if (!res.ok) throw new Error('Erreur API capsules');
+      if (!res.ok) throw new Error('Erreur API dragons');
       return await res.json();
     }
   });
 
-  setCapsuleResearch(query: string) {
+  setDragonResearch(query: string) {
     if (this.searchQuery() !== query) {
       this.searchQuery.set(query);
       this.page.set(1);
     }
-    this.searchCapsuleResource.reload();
+    this.searchDragonResource.reload();
   }
 
   resetSearchCapsuleResource() {
-    this.searchCapsuleResource.set(EMPTY_RESOURCE);
-    this.searchCapsuleResource.reload();
+    this.searchDragonResource.set(EMPTY_RESOURCE);
+    this.searchDragonResource.reload();
   }
 
   nextPage() {
@@ -79,7 +80,7 @@ export class CapsulesService {
   reloadPageResults() {
     this.searchQuery.set('');
     this.page.set(0);
-    this.searchCapsuleResource.reload();
+    this.searchDragonResource.reload();
   }
 
   currentSearchQuery() {
@@ -87,7 +88,7 @@ export class CapsulesService {
   }
 
   get totalPages() {
-    const result = this.searchCapsuleResource.value();
+    const result = this.searchDragonResource.value();
     return result ? result.totalPages : 1;
   }
 

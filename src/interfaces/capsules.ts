@@ -1,4 +1,4 @@
-import { capsuleStatus } from "@app/constants/capsules";
+export type capsuleStatus = 'retired' | 'unknown' | 'destroyed' | 'active'
 
 export interface ICapsule {
   serial: string,

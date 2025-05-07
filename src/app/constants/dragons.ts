@@ -1,0 +1,1 @@
+export const DEFAULT_DRAGON_LIMIT = 8;

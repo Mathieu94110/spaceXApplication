@@ -15,7 +15,7 @@
             <span class="all-capsules-card-stats"> {{capsule.land_landings}}land landings</span>
             <div class="all-capsules-card-stats-rocket-launch">
               <span class="all-capsules-card-stats-rocket-launch-text">Launche:</span>
-              <mat-icon>rocket_launch</mat-icon>
+              <mat-icon (click)="goToArticle(capsule)">rocket_launch</mat-icon>
             </div>
           </div>
           <span card-description>

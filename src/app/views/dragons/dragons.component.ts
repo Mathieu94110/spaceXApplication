@@ -1,21 +1,20 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { STATUS_CLASS_MAP } from '@app/constants/capsules';
-import { CAPSULES_NAV_LINKS } from '@app/constants/navigation';
+import { DRAGONS_NAV_LINKS } from '@app/constants/navigation';
 import { NavigationLayoutComponent } from '@app/layouts/navigation-layout/navigation-layout.component';
-import { capsuleStatus, ICapsule } from 'interfaces/capsules';
-import { CapsulesService } from 'services/capsules.service';
+import { IDragon } from 'interfaces/dragons';
+import { DragonsService } from 'services/dragons.service';
 
 @Component({
-  selector: 'app-capsules',
+  selector: 'app-dragons',
   imports: [RouterModule, NavigationLayoutComponent],
-  templateUrl: './capsules.component.html',
-  styleUrl: './capsules.component.scss'
+  templateUrl: './dragons.component.html',
+  styleUrl: './dragons.component.scss'
 })
-export class CapsulesComponent {
-  protected readonly capsulesService = inject(CapsulesService);
-  protected readonly capsulesLinks = CAPSULES_NAV_LINKS;
+export class DragonsComponent {
+  protected readonly dragonsService = inject(DragonsService);
+  protected readonly dragonsLinks = DRAGONS_NAV_LINKS;
   protected readonly errorMsg = "Il semble qu'il y ait eu un problème lors du chargement de la liste";
   private readonly platformId = inject(PLATFORM_ID);
 
@@ -41,11 +40,7 @@ export class CapsulesComponent {
     }
   }
 
-  getCapsuleClass(status: capsuleStatus) {
-    return STATUS_CLASS_MAP[status] || 'color-black';
-  }
-  goToArticle(capsule: ICapsule) {
-    if (capsule.launches?.length) window.open(`/launches/${capsule.launches[0]}`, '_blank')
-    // to do 
+  goToArticle(dragon: IDragon) {
+    if (dragon.wikipedia) window.open(dragon.wikipedia, '_blank')
   }
 }

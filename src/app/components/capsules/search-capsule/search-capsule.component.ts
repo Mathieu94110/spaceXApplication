@@ -11,6 +11,7 @@ import { CapsulesService } from 'services/capsules.service';
 import { PaginationLayoutComponent } from '@app/layouts/pagination-layout/pagination-layout.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SearchCardLayoutComponent } from '@app/layouts/search-card-layout/search-card-layout.component';
+import { patchCapsuleResource } from '@app/utils/capsules.utils';
 
 @Component({
   selector: 'app-search-capsule',
@@ -38,7 +39,7 @@ export class SearchCapsuleComponent {
   lastCompletedSearchTerm = signal('');
   pendingSearchTerm = signal(''); // <-- Tracks the search term currently being typed
   hasLoadedOnce = signal(false); // <-- New signal to track if a search has already completed at least once
-  searchCapsulesList = computed(() => this.capsulesService.searchCapsuleResource.value().docs || []);
+  searchCapsulesList = computed(() => this.capsulesService.searchCapsuleResource.value()?.docs || []);
   searchCapsulesIsLoading = computed(() => this.capsulesService.searchCapsuleResource.isLoading());
   searchCapsulesError = computed(() => this.capsulesService.searchCapsuleResource.error());
 
@@ -111,12 +112,19 @@ export class SearchCapsuleComponent {
     this.resetSearchCapsules();
   }
 
+  triggerSearchEffect() {
+    this.searchTerm.set(this.searchTerm());
+  }
+
   resetSearchCapsules() {
     this.hasSearched.set(false);
     this.pendingSearchTerm.set('');
-    this.capsulesService.searchCapsuleResource.set({ docs: [], totalDocs: 0, totalPages: 0 });
-  }
 
+    const currentValues = this.capsulesService.searchCapsuleResource.value();
+    this.capsulesService.searchCapsuleResource.set(
+      patchCapsuleResource({ docs: [], totalDocs: 0 }, currentValues)
+    );
+  }
   hasNextPage() {
     return this.currentPage < this.totalPages;
   }

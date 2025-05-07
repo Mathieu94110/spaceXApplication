@@ -18,3 +18,7 @@ export const CAPSULES_NAV_LINKS = [
   { title: 'toutes', link: '/capsules' },
   { title: 'rechercher', link: '/capsules/search' }
 ];
+export const DRAGONS_NAV_LINKS = [
+  { title: 'tout', link: '/capsules' },
+  { title: 'rechercher', link: '/dragons/search' }
+];
