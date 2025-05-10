@@ -1,3 +1,8 @@
+import { Signal } from '@angular/core';
+import { ICapsule } from './capsules';
+import { ILaunch } from './launches';
+import { IDragon } from './dragons';
+
 export interface IRessource<T> {
   docs: T[];
   totalDocs: number;
@@ -19,3 +24,32 @@ export interface IRessourceRef<T> {
   limit?: number;
   [key: string]: any;
 }
+
+/* export interface ISearchService<T> {
+  resource: Signal<IRessource<T>>;
+  setSearchQuery(query: string): void;
+  nextPage(): void;
+  prevPage(): void;
+  reset(): void;
+  currentSearchQuery(): string;
+  currentPage: number;
+  totalPages: number;
+} */
+
+export interface ISearchService<T> {
+  resource: {
+    value: () => IRessource<T> | null;
+    isLoading: () => boolean;
+    error: () => any;
+    set: (data: IRessource<T>) => void;
+    reload: () => void;
+  };
+  currentSearchQuery(): string;
+  setSearchQuery(query: string): void;
+  nextPage(): void;
+  prevPage(): void;
+  totalPages: number;
+  currentPage: number;
+}
+
+export type SearchableEntity = ICapsule | ILaunch | IDragon;

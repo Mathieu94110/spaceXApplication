@@ -1,0 +1,10 @@
+<mat-card class="search-card" *ngIf="dragonInfo">
+  <mat-card-title>{{ dragonInfo.name }}</mat-card-title>
+  <mat-card-subtitle>{{ dragonInfo.type }}</mat-card-subtitle>
+  <mat-card-content>
+    <div class="search-card-info-line"><strong>Description:</strong> {{ dragonInfo.description }}</div>
+    <div class="search-card-info-line"><strong>Crew capacity:</strong> {{ dragonInfo.crew_capacity }}</div>
+    <div class="search-card-info-line"><strong>Orbit duration year:</strong> {{ dragonInfo.orbit_duration_yr }}</div>
+    <div class="search-card-info-line"><strong>Active:</strong> {{ dragonInfo.active }}</div>
+  </mat-card-content>
+</mat-card>

@@ -9,6 +9,7 @@ import { CapsulesService } from 'services/capsules.service';
 
 @Component({
   selector: 'app-capsules',
+  standalone: true,
   imports: [RouterModule, NavigationLayoutComponent],
   templateUrl: './capsules.component.html',
   styleUrl: './capsules.component.scss'

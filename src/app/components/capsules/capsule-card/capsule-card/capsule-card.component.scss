@@ -1,0 +1,23 @@
+.search-card {
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &-info-line {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .search-card {
+    &-info-line {
+      font-size: 16px;
+    }
+  }
+}

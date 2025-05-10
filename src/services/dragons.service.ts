@@ -4,25 +4,28 @@ import { DEFAULT_DRAGON_LIMIT } from '@app/constants/dragons';
 import { environment } from 'environments/environment';
 import { IRessource } from 'interfaces';
 import { IDragon } from 'interfaces/dragons';
+import { ISearchService } from 'interfaces';
 
 @Injectable({ providedIn: 'root' })
-export class DragonsService {
+export class DragonsService implements ISearchService<IDragon> {
   constructor() {
     effect(() => {
       const queryText = this.searchQuery();
       const page = this.page();
-      this.searchDragonResource.reload();
+
+      if (queryText.trim() !== '' || page !== 1) {
+        this.searchDragonResource.reload();
+      }
     });
   }
 
-  private capsulesUrl = `${environment.apiUrl}/dragons`;
+  private dragonsUrl = `${environment.apiUrl}/dragons`;
   private searchQuery = signal('');
   private page = signal(1);
 
-
   allDragonsResource = resource({
     loader: async (): Promise<IDragon[]> =>
-      (await fetch(`${this.capsulesUrl}`)).json(),
+      (await fetch(`${this.dragonsUrl}`)).json(),
   });
 
   private requestParams = computed(() => ({
@@ -33,21 +36,25 @@ export class DragonsService {
   searchDragonResource = resource({
     loader: async (): Promise<IRessource<IDragon>> => {
       const { queryText, page } = this.requestParams();
-      const res = await fetch(`${this.capsulesUrl}/query`, {
+
+      if (!queryText) {
+        return EMPTY_RESOURCE;
+      }
+
+      const res = await fetch(`${this.dragonsUrl}/query`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          query: queryText
-            ? {
-              $or: [
-                { serial: { $regex: queryText, $options: 'i' } },
-                { type: { $regex: queryText, $options: 'i' } }
-              ]
-            }
-            : {},
+          query: {
+            $or: [
+              { name: { $regex: queryText, $options: 'i' } },
+              { type: { $regex: queryText, $options: 'i' } },
+              { description: { $regex: queryText, $options: 'i' } }
+            ]
+          },
           options: {
             limit: DEFAULT_DRAGON_LIMIT,
-            page: page
+            page
           }
         })
       });
@@ -57,16 +64,21 @@ export class DragonsService {
     }
   });
 
-  setDragonResearch(query: string) {
-    if (this.searchQuery() !== query) {
-      this.searchQuery.set(query);
+  setSearchQuery(query: string): void {
+    const trimmed = query.trim();
+
+    if (trimmed === '') {
+      this.searchQuery.set('');
+      this.page.set(1);
+      this.searchDragonResource.set(EMPTY_RESOURCE);
+      return;
+    }
+
+    if (this.searchQuery() !== trimmed) {
+      this.searchQuery.set(trimmed);
       this.page.set(1);
     }
-    this.searchDragonResource.reload();
-  }
 
-  resetSearchCapsuleResource() {
-    this.searchDragonResource.set(EMPTY_RESOURCE);
     this.searchDragonResource.reload();
   }
 
@@ -75,24 +87,31 @@ export class DragonsService {
   }
 
   prevPage() {
-    if (this.page() > 1) this.page.set(this.page() - 1);
-  }
-  reloadPageResults() {
-    this.searchQuery.set('');
-    this.page.set(0);
-    this.searchDragonResource.reload();
+    if (this.page() > 1) {
+      this.page.set(this.page() - 1);
+    }
   }
 
-  currentSearchQuery() {
+  currentSearchQuery(): string {
     return this.searchQuery();
   }
 
-  get totalPages() {
+  get totalPages(): number {
     const result = this.searchDragonResource.value();
     return result ? result.totalPages : 1;
   }
 
-  get currentPage() {
+  get currentPage(): number {
     return this.page();
+  }
+
+  get resource() {
+    return {
+      value: () => this.searchDragonResource.value() ?? null,
+      isLoading: () => this.searchDragonResource.isLoading(),
+      error: () => this.searchDragonResource.error(),
+      set: (data: IRessource<IDragon>) => this.searchDragonResource.set(data),
+      reload: () => this.searchDragonResource.reload()
+    };
   }
 }

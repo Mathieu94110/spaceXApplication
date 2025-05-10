@@ -4,20 +4,23 @@ import { DEFAULT_CAPSULE_LIMIT } from '@app/constants/capsules';
 import { environment } from 'environments/environment';
 import { ICapsule } from 'interfaces/capsules';
 import { IRessource } from 'interfaces';
+import { ISearchService } from 'interfaces';
 
 @Injectable({ providedIn: 'root' })
-export class CapsulesService {
+export class CapsulesService implements ISearchService<ICapsule> {
   constructor() {
     effect(() => {
       const queryText = this.searchQuery();
       const page = this.page();
-      this.searchCapsuleResource.reload();
+      if (queryText.trim() !== '' || page !== 1) {
+        this.searchCapsuleResource.reload();
+      }
     });
   }
+
   private capsulesUrl = `${environment.apiUrl}/capsules`;
   private searchQuery = signal('');
   private page = signal(1);
-
 
   allCapsulesResource = resource({
     loader: async (): Promise<ICapsule[]> =>
@@ -26,46 +29,57 @@ export class CapsulesService {
 
   private requestParams = computed(() => ({
     queryText: this.searchQuery().trim(),
-    page: this.page()
+    page: this.page(),
   }));
 
   searchCapsuleResource = resource({
     loader: async (): Promise<IRessource<ICapsule>> => {
       const { queryText, page } = this.requestParams();
+
+      if (!queryText) {
+        return EMPTY_RESOURCE;
+      }
+
       const res = await fetch(`${this.capsulesUrl}/query`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          query: queryText
-            ? {
-              $or: [
-                { serial: { $regex: queryText, $options: 'i' } },
-                { type: { $regex: queryText, $options: 'i' } }
-              ]
-            }
-            : {},
+          query: {
+            $or: [
+              { serial: { $regex: queryText, $options: 'i' } },
+              { type: { $regex: queryText, $options: 'i' } },
+            ]
+          },
           options: {
             limit: DEFAULT_CAPSULE_LIMIT,
-            page: page
+            page,
           }
         })
       });
 
-      if (!res.ok) throw new Error('Erreur API capsules');
+      if (!res.ok) {
+        throw new Error('Erreur API capsules');
+      }
+
       return await res.json();
     }
   });
 
-  setCapsuleResearch(query: string) {
-    if (this.searchQuery() !== query) {
-      this.searchQuery.set(query);
+  setSearchQuery(query: string): void {
+    const trimmed = query.trim();
+
+    if (trimmed === '') {
+      this.searchQuery.set('');
+      this.page.set(1);
+      this.searchCapsuleResource.set(EMPTY_RESOURCE);
+      return;
+    }
+
+    if (this.searchQuery() !== trimmed) {
+      this.searchQuery.set(trimmed);
       this.page.set(1);
     }
-    this.searchCapsuleResource.reload();
-  }
 
-  resetSearchCapsuleResource() {
-    this.searchCapsuleResource.set(EMPTY_RESOURCE);
     this.searchCapsuleResource.reload();
   }
 
@@ -74,24 +88,31 @@ export class CapsulesService {
   }
 
   prevPage() {
-    if (this.page() > 1) this.page.set(this.page() - 1);
-  }
-  reloadPageResults() {
-    this.searchQuery.set('');
-    this.page.set(0);
-    this.searchCapsuleResource.reload();
+    if (this.page() > 1) {
+      this.page.set(this.page() - 1);
+    }
   }
 
-  currentSearchQuery() {
+  currentSearchQuery(): string {
     return this.searchQuery();
   }
 
-  get totalPages() {
+  get totalPages(): number {
     const result = this.searchCapsuleResource.value();
     return result ? result.totalPages : 1;
   }
 
-  get currentPage() {
+  get currentPage(): number {
     return this.page();
+  }
+
+  get resource() {
+    return {
+      value: () => this.searchCapsuleResource.value() ?? null,
+      isLoading: () => this.searchCapsuleResource.isLoading(),
+      error: () => this.searchCapsuleResource.error(),
+      set: (data: IRessource<ICapsule>) => this.searchCapsuleResource.set(data),
+      reload: () => this.searchCapsuleResource.reload()
+    };
   }
 }

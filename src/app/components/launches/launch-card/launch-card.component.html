@@ -1,0 +1,11 @@
+<mat-card class="search-card" *ngIf="launchInfo">
+  <mat-card-title>{{ launchInfo.name }}</mat-card-title>
+  <mat-card-subtitle>{{ launchInfo.rocket }}</mat-card-subtitle>
+  <mat-card-content>
+    <div class="search-card-info-line"><strong>Date:</strong> {{launchInfo.date_utc | date:'dd/MM/yyyy HH:mm:ss'}}</div>
+    <div class="search-card-info-line"><strong>Capsules:</strong> {{ launchInfo.capsules }}</div>
+    <div class="search-card-info-line"><strong>Details:</strong> {{ launchInfo.details || 'Aucune description
+      disponible' | slice: 0:100 }}... </div>
+    <div class="search-card-info-line"><strong>Success:</strong> {{ launchInfo.success ? 'Yes' : 'No'}}</div>
+  </mat-card-content>
+</mat-card>

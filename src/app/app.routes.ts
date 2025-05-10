@@ -33,6 +33,11 @@ export const routes: Routes = [
         loadComponent: () => import('./components/launches/upcoming-launches/upcoming-launches.component')
           .then(m => m.UpcomingLaunchesComponent)
       },
+      {
+        path: 'search',
+        loadComponent: () => import('./components/launches/search-launches/search-launches.component')
+          .then(m => m.SearchLaunchesComponent)
+      }
     ]
   },
   {

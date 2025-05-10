@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CapsulesComponent } from './capsules.component';
-import { CapsulesService } from 'services/capsules.service';
 import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs';
+import { CAPSULE_INFO_TOKEN } from '@app/constants/capsules';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
-describe('CapsulesComponent', () => {
+describe('DragonsComponent', () => {
   let component: CapsulesComponent;
   let fixture: ComponentFixture<CapsulesComponent>;
 
@@ -12,19 +12,9 @@ describe('CapsulesComponent', () => {
     await TestBed.configureTestingModule({
       imports: [CapsulesComponent],
       providers: [
-        {
-          provide: CapsulesService,
-          useValue: {
-            getCapsules: () => of([]),
-          }
-        },
-        {
-          provide: ActivatedRoute,
-          useValue: {
-            params: of({}),
-            snapshot: { paramMap: new Map() }
-          }
-        }
+        { provide: ActivatedRoute, useValue: {} },
+        { provide: CAPSULE_INFO_TOKEN, useValue: { name: 'Mock Capsule' } },
+        provideAnimations(),
       ]
     }).compileComponents();
 

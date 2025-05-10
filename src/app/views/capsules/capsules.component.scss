@@ -11,17 +11,6 @@
   flex-direction: column;
 }
 
-.search-capsules {
-  max-width: 1400px;
-  margin: 100px auto 50px auto;
-  padding: 0 16px;
-  height: calc(100vh - #{ $navbar-height * 1.5 });
-  overflow-x: hidden;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-}
-
 mat-grid-list {
   width: 100%;
   margin: 0 auto;
