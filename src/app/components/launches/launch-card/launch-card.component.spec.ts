@@ -3,9 +3,10 @@ import { LaunchCardComponent } from './launch-card.component';
 import { LAUNCH_INFO_TOKEN } from '@app/constants/launches';
 import { mockLaunch } from 'mocks/launches';
 
-describe('PastLaunchesComponent', () => {
+describe('LaunchCardComponent', () => {
   let component: LaunchCardComponent;
   let fixture: ComponentFixture<LaunchCardComponent>;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [LaunchCardComponent],
@@ -17,6 +18,9 @@ describe('PastLaunchesComponent', () => {
     fixture = TestBed.createComponent(LaunchCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  })
+  });
 
+  it('should create component', () => {
+    expect(component).toBeTruthy();
+  });
 })

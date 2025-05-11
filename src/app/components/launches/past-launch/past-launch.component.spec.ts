@@ -1,23 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PastLaunchComponent } from './past-launch.component';
 
-describe('PastLaunchesComponent', () => {
+describe('PastLaunchComponent', () => {
   let component: PastLaunchComponent;
   let fixture: ComponentFixture<PastLaunchComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [PastLaunchComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PastLaunchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create component', () => {
     expect(component).toBeTruthy();
   });
 });
