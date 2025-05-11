@@ -9,8 +9,7 @@ import { ILaunch } from 'interfaces/launches';
   selector: 'app-launch-card',
   standalone: true,
   imports: [CommonModule, MatButtonModule, MatCardModule],
-  templateUrl: './launch-card.component.html',
-  styleUrl: './launch-card.component.scss'
+  templateUrl: './launch-card.component.html'
 })
 export class LaunchCardComponent {
   constructor(@Inject(LAUNCH_INFO_TOKEN) public launchInfo: ILaunch) { }

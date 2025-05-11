@@ -8,8 +8,7 @@ import { ICapsule } from 'interfaces/capsules';
   selector: 'app-capsule-card',
   standalone: true,
   imports: [CommonModule, MatButtonModule, MatCardModule],
-  templateUrl: './capsule-card.component.html',
-  styleUrl: './capsule-card.component.scss'
+  templateUrl: './capsule-card.component.html'
 })
 export class CapsuleCardComponent {
   constructor(@Inject(CAPSULE_INFO_TOKEN) public capsuleInfo: ICapsule) { }

@@ -9,8 +9,7 @@ import { IDragon } from 'interfaces/dragons';
   selector: 'app-dragon-card',
   standalone: true,
   imports: [CommonModule, MatButtonModule, MatCardModule],
-  templateUrl: './dragon-card.component.html',
-  styleUrl: './dragon-card.component.scss'
+  templateUrl: './dragon-card.component.html'
 })
 export class DragonCardComponent {
   constructor(@Inject(DRAGON_INFO_TOKEN) public dragonInfo: IDragon) { }
