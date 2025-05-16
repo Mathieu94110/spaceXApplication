@@ -54,6 +54,11 @@ export const routes: Routes = [
         path: 'search',
         loadComponent: () => import('./components/capsules/search-capsule/search-capsule.component')
           .then(m => m.SearchCapsuleComponent)
+      },
+      {
+        path: ':id',
+        loadComponent: () => import('./components/capsules/capsule-details/capsule-details.component')
+          .then(m => m.CapsuleDetailsComponent)
       }
     ]
   },

@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SearchCapsuleComponent } from './search-capsule.component';
 import { CapsulesService } from 'services/capsules.service';
 import { CAPSULE_INFO_TOKEN } from '@app/constants/capsules';
-import { CapsuleCardComponent } from '../capsule-card/capsule-card/capsule-card.component';
+import { SearchCapsuleCardComponent } from '../search-capsule-card/search-capsule-card.component';
 import { mockCapsule } from 'mocks/capsules';
 import { MockSearchLayoutComponent } from 'mocks/search-layout';
 
@@ -12,7 +12,7 @@ describe('SearchCapsuleComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [SearchCapsuleComponent, MockSearchLayoutComponent, CapsuleCardComponent],
+      imports: [SearchCapsuleComponent, MockSearchLayoutComponent, SearchCapsuleCardComponent],
       providers: [
         { provide: CAPSULE_INFO_TOKEN, useValue: mockCapsule },
         { provide: CapsulesService, useValue: {} }
@@ -28,8 +28,8 @@ describe('SearchCapsuleComponent', () => {
   });
 
   it('should have CapsuleCardComponent as cardComponent', () => {
-    component.cardComponent = CapsuleCardComponent;
-    expect(component.cardComponent).toBe(CapsuleCardComponent);
+    component.cardComponent = SearchCapsuleCardComponent;
+    expect(component.cardComponent).toBe(SearchCapsuleCardComponent);
   });
 
   it('should inject CAPSULE_INFO_TOKEN correctly', () => {

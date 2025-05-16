@@ -1,22 +1,22 @@
 import { TestBed } from '@angular/core/testing';
-import { CapsuleCardComponent } from './capsule-card.component';
+import { SearchCapsuleCardComponent } from './search-capsule-card.component';
 import { CAPSULE_INFO_TOKEN } from '@app/constants/capsules';
 import { ComponentFixture } from '@angular/core/testing';
 import { mockCapsule } from 'mocks/capsules';
 
-describe('CapsuleCardComponent', () => {
-  let fixture: ComponentFixture<CapsuleCardComponent>;
-  let component: CapsuleCardComponent;
+describe('SearchCapsuleCardComponent', () => {
+  let fixture: ComponentFixture<SearchCapsuleCardComponent>;
+  let component: SearchCapsuleCardComponent;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CapsuleCardComponent],
+      imports: [SearchCapsuleCardComponent],
       providers: [
         { provide: CAPSULE_INFO_TOKEN, useValue: mockCapsule }
       ]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CapsuleCardComponent);
+    fixture = TestBed.createComponent(SearchCapsuleCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

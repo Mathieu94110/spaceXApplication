@@ -15,7 +15,7 @@ import { CommonModule, NgComponentOutlet } from '@angular/common';
   selector: 'app-search-layout',
   standalone: true,
   templateUrl: './search-layout.component.html',
-  styleUrls: ['./search-layout.component.scss'],
+  styleUrls: ['./search-layout.component.scss', '../../components/capsules/search-capsule/search-capsule.component.scss'],
   imports: [
     CommonModule,
     NgComponentOutlet,

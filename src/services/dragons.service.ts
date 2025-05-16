@@ -2,9 +2,8 @@ import { Injectable, computed, effect, signal, resource } from '@angular/core';
 import { EMPTY_RESOURCE } from '@app/constants';
 import { DEFAULT_DRAGON_LIMIT } from '@app/constants/dragons';
 import { environment } from 'environments/environment';
-import { IRessource } from 'interfaces';
+import { IRessource, ISearchService } from 'interfaces';
 import { IDragon } from 'interfaces/dragons';
-import { ISearchService } from 'interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class DragonsService implements ISearchService<IDragon> {

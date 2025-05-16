@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { STATUS_CLASS_MAP } from '@app/constants/capsules';
 import { CAPSULES_NAV_LINKS } from '@app/constants/navigation';
 import { NavigationLayoutComponent } from '@app/layouts/navigation-layout/navigation-layout.component';
-import { capsuleStatus, ICapsule } from 'interfaces/capsules';
+import { capsuleStatus } from 'interfaces/capsules';
 import { CapsulesService } from 'services/capsules.service';
 
 @Component({
@@ -44,9 +44,5 @@ export class CapsulesComponent {
 
   getCapsuleClass(status: capsuleStatus) {
     return STATUS_CLASS_MAP[status] || 'color-black';
-  }
-  goToArticle(capsule: ICapsule) {
-    if (capsule.launches?.length) window.open(`/launches/${capsule.launches[0]}`, '_blank')
-    // to do 
   }
 }
