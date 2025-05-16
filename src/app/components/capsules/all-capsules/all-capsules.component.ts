@@ -7,6 +7,7 @@ import { CapsulesComponent } from '@app/views/capsules/capsules.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
+
 @Component({
   selector: 'app-all-capsules',
   imports: [CommonModule, MatProgressSpinnerModule, MatButtonModule, MatGridListModule, CardLayoutComponent, MatIconModule],
@@ -22,8 +23,8 @@ export class AllCapsulesComponent extends CapsulesComponent {
     this.updateGridCols();
     window.addEventListener('resize', () => this.updateGridCols());
   }
-  goToCapuleDetails(serial: string) {
-    console.log(serial)
+  goToCapuleDetails(id: string) {
+    this.router.navigate(['/capsules', id]);
   }
   handleRocketClick(launch: string) {
     // Par exemple un console.log

@@ -37,6 +37,10 @@ export const routes: Routes = [
         path: 'search',
         loadComponent: () => import('./components/launches/search-launches/search-launches.component')
           .then(m => m.SearchLaunchesComponent)
+      }, {
+        path: ':id',
+        loadComponent: () => import('./components/capsules/capsule-details/capsule-details.component')
+          .then(m => m.CapsuleDetailsComponent)
       }
     ]
   },

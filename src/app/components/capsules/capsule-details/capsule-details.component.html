@@ -1,0 +1,34 @@
+@let capsule = capsuleDetails();
+@if (isLoading()) {
+<div class="loading-container">
+  <mat-spinner></mat-spinner>
+</div>
+} @else {
+@if (errorMessage()) {
+<div class="error-message">
+  <p>Erreur : {{ errorMessage() }}</p>
+</div>
+} @else if (capsule) {
+<div class="capsule-details">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ capsule.serial }}</mat-card-title>
+      <mat-card-subtitle>{{ capsule.type }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p><strong>Reuse count :</strong> {{ capsule.reuse_count }}</p>
+      <p><strong>Water landings :</strong> {{ capsule.water_landings }}</p>
+      <p><strong>Land landings :</strong> {{ capsule.land_landings || 'Aucun détail disponible.' }}</p>
+      <p><strong>Last update :</strong> {{ capsule.last_update || 'Inconnu' }}</p>
+      <p><strong>First Launch:</strong> {{ capsule.launches[0] }}</p>
+      <p><strong>Status :</strong> {{ capsule.status }}</p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-button routerLink="/capsules" class="capsule-details-btn">Retour à la liste</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+}
+}

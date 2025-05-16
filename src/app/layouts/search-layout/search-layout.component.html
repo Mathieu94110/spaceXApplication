@@ -8,8 +8,8 @@
         </button>
       </mat-form-field>
     </div>
-
-    <ng-container *ngIf="list().length > 0">
+    @if(list().length > 0){
+    <ng-container>
       <div class="results-container">
         <ng-container *ngFor="let item of list()">
           <ng-container *ngComponentOutlet="cardComponent; injector: createInjector(item)">
@@ -17,19 +17,20 @@
         </ng-container>
       </div>
     </ng-container>
-
-    <div *ngIf="isLoading()" class="spinner-container">
+    }
+    @else if(isLoading()){
+    <div class="spinner-container">
       <mat-spinner diameter="50"></mat-spinner>
     </div>
-
-    <div *ngIf="showNoResultsMessage()" class="no-results-message">
+    }@else if(showNoResultsMessage()){
+    <div class="no-results-message">
       Aucun résultat trouvé pour "{{ lastCompletedSearchTerm() }}"
     </div>
-
-    <div *ngIf="error()" class="error">
+    }@else if(error()){
+    <div class="error">
       Une erreur est survenue : {{ error()?.message || 'Erreur inconnue' }}
     </div>
-
+    }
     <app-pagination-layout [hasData]="list().length > 0" [isPrevButtonVisible]="currentPage > 1"
       [isNextButtonVisible]="currentPage < totalPages" (previousClicked)="prevPage()" (nextClicked)="nextPage()" />
   </div>

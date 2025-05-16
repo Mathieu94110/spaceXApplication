@@ -1,0 +1,30 @@
+@use 'variables' as *;
+
+.capsule-details {
+  max-width: 1400px;
+  margin: 100px auto 50px auto;
+  padding: 0 16px;
+  height: calc(100vh - 150px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.loading-container,
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4rem;
+  gap: 1rem;
+  text-align: center;
+}
+
+.capsule-details-btn {
+  margin: 10px 0;
+  background-color: $color-blue ;
+  color: $color-white !important;
+
+  &:hover {
+    background-color: $color-black;
+  }
+}
