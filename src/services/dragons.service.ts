@@ -1,4 +1,4 @@
-import { Injectable, computed, effect, signal, resource } from '@angular/core';
+import { Injectable, computed, effect, signal, resource, runInInjectionContext, inject, Injector } from '@angular/core';
 import { EMPTY_RESOURCE } from '@app/constants';
 import { DEFAULT_DRAGON_LIMIT } from '@app/constants/dragons';
 import { environment } from 'environments/environment';
@@ -7,6 +7,7 @@ import { IDragon } from 'interfaces/dragons';
 
 @Injectable({ providedIn: 'root' })
 export class DragonsService implements ISearchService<IDragon> {
+  private injector = inject(Injector);
   constructor() {
     effect(() => {
       const queryText = this.searchQuery();
@@ -26,6 +27,29 @@ export class DragonsService implements ISearchService<IDragon> {
     loader: async (): Promise<IDragon[]> =>
       (await fetch(`${this.dragonsUrl}`)).json(),
   });
+
+  private capsuleDetailsCache = new Map<string, ReturnType<typeof resource>>();
+
+  getDragonDetailsResource(id: string) {
+    if (this.capsuleDetailsCache.has(id)) {
+      return this.capsuleDetailsCache.get(id)!;
+    }
+
+    const dragonResource = runInInjectionContext(this.injector, () => {
+      return resource({
+        loader: async (): Promise<IDragon> => {
+          const res = await fetch(`${this.dragonsUrl}/${id}`);
+          if (!res.ok) {
+            throw new Error(`API Error : dragon ${id} not found`);
+          }
+          return await res.json();
+        }
+      });
+    });
+
+    this.capsuleDetailsCache.set(id, dragonResource);
+    return dragonResource;
+  }
 
   private requestParams = computed(() => ({
     queryText: this.searchQuery().trim(),

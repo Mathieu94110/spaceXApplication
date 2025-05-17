@@ -1,6 +1,6 @@
 import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { LAUNCHES_NAV_LINKS } from '@app/constants/navigation';
 import { NavigationLayoutComponent } from "../../layouts/navigation-layout/navigation-layout.component";
 import { LaunchesService } from 'services/launches.service';
@@ -13,6 +13,7 @@ import { ILaunch } from 'interfaces/launches';
   styleUrl: './launches.component.scss'
 })
 export class LaunchesComponent {
+  protected readonly router = inject(Router);
   private readonly platformId = inject(PLATFORM_ID);
   protected readonly launchesService = inject(LaunchesService);
   protected readonly launchesLinks = LAUNCHES_NAV_LINKS;

@@ -19,8 +19,8 @@
             {{ dragon.active ? 'À venir' : 'Terminé' }}
           </span>
           <span card-action>
-            <button mat-raised-button [disabled]="!dragon.wikipedia" (click)="goToArticle(dragon)">
-              Article wikipédia
+            <button card-upcoming mat-raised-button (click)="goToDragonDetails(dragon.id)">
+              Voir le détail
             </button>
           </span>
         </app-card-layout>

@@ -1,6 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, inject, PLATFORM_ID } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { DRAGONS_NAV_LINKS } from '@app/constants/navigation';
 import { NavigationLayoutComponent } from '@app/layouts/navigation-layout/navigation-layout.component';
 import { IDragon } from 'interfaces/dragons';
@@ -13,6 +13,7 @@ import { DragonsService } from 'services/dragons.service';
   styleUrl: './dragons.component.scss'
 })
 export class DragonsComponent {
+  protected readonly router = inject(Router);
   protected readonly dragonsService = inject(DragonsService);
   protected readonly dragonsLinks = DRAGONS_NAV_LINKS;
   protected readonly errorMsg = "Il semble qu'il y ait eu un problème lors du chargement de la liste";

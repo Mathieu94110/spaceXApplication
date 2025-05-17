@@ -23,4 +23,7 @@ export class AllLaunchesComponent extends LaunchesComponent {
     this.updateGridCols();
     window.addEventListener('resize', () => this.updateGridCols());
   }
+  goToLaunchDetails(id: string) {
+    this.router.navigate(['/launches', id]);
+  }
 }

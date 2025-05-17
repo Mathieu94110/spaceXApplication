@@ -57,7 +57,7 @@ export interface Links {
 }
 
 export interface ILaunch {
-  _id?: string | number;
+  id: string;
   flight_number: number;
   name: string;
   date_utc: string;
@@ -66,22 +66,21 @@ export interface ILaunch {
   date_precision: 'half' | 'quarter' | 'year' | 'month' | 'day' | 'hour';
   static_fire_date_utc?: string | null;
   static_fire_date_unix?: number | null;
-  tbd?: boolean;
+  tdb?: boolean;
   net?: boolean;
   window?: number | null;
-  rocket?: string | number | null;
+  rocket?: string | null;
   success?: boolean | null;
   failures?: Failure[];
   upcoming: boolean;
   details?: string | null;
-  fairings?: Fairings;
-  crew?: CrewMember[];
-  ships?: string[] | number[];
-  capsules?: string[] | number[];
-  payloads?: string[] | number[];
-  launchpad?: string | number | null;
+  fairings?: Fairings | null;
+  crew?: string[];
+  ships?: string[];
+  capsules?: string[];
+  payloads?: string[];
+  launchpad?: string | null;
   cores?: Core[];
   links?: Links;
   auto_update?: boolean;
-  launch_library_id?: string | null;
 }

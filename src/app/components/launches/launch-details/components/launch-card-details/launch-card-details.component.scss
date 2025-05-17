@@ -1,0 +1,55 @@
+@use 'variables' as *;
+
+.patch-image {
+  width: 60px;
+  height: 60px;
+  margin-right: 1rem;
+  vertical-align: middle;
+  border-radius: 6px;
+  object-fit: contain;
+}
+
+.success {
+  color: $color-success;
+  font-weight: 600;
+}
+
+.failed {
+  color: $color-error;
+  font-weight: 600;
+}
+
+.launch-details-link-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 4px 0;
+
+  a {
+    display: flex;
+    align-items: center;
+    color: $color-black;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  mat-icon {
+    font-size: 20px;
+  }
+}
+
+.launch-details-btn {
+  margin: 10px 0;
+  background-color: $color-blue;
+  color: $color-white !important;
+  border-radius: 4px;
+  padding: 6px 16px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $color-black;
+  }
+}

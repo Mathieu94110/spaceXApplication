@@ -9,7 +9,6 @@ import { IRessource, ISearchService } from 'interfaces';
 @Injectable({ providedIn: 'root' })
 export class CapsulesService implements ISearchService<ICapsule> {
   private injector = inject(Injector);
-
   private capsulesUrl = `${environment.apiUrl}/capsules`;
   private searchQuery = signal('');
   private page = signal(1);

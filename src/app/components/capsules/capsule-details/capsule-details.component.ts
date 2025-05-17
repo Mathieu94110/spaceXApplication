@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ICapsule } from 'interfaces/capsules';
+import { CapsuleCardDetailsComponent } from "./components/capsule-card-details/capsule-card-details.component";
 
 @Component({
   selector: 'app-capsule-details',
@@ -18,6 +19,7 @@ import { ICapsule } from 'interfaces/capsules';
     MatProgressSpinnerModule,
     MatButtonModule,
     RouterModule,
+    CapsuleCardDetailsComponent
   ],
 })
 

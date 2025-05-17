@@ -27,7 +27,6 @@ export class AllCapsulesComponent extends CapsulesComponent {
     this.router.navigate(['/capsules', id]);
   }
   handleRocketClick(launch: string) {
-    // Par exemple un console.log
     console.log('Rocket clicked', launch);
   }
 

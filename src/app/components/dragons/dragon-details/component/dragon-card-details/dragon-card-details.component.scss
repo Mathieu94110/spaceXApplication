@@ -1,0 +1,80 @@
+@use 'variables' as *;
+
+.dragon-details {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+
+  mat-card {
+    width: 100%;
+    max-width: 900px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    .dragon-image {
+      width: 100%;
+      height: auto;
+      border-radius: 0 0 8px 8px;
+      object-fit: cover;
+    }
+
+    .section {
+      margin-top: 1rem;
+
+      h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.3rem;
+        color: #333;
+      }
+
+      p {
+        margin: 0.2rem 0;
+      }
+    }
+
+    mat-card-header {
+      align-items: center;
+
+      .dragon-avatar {
+        background-color: #1976d2;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    mat-card-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
+
+    mat-card-subtitle {
+      font-size: 1rem;
+      color: #777;
+    }
+
+    mat-card-content {
+      font-size: 0.95rem;
+
+      p {
+        margin: 0.3rem 0;
+      }
+    }
+
+    mat-card-actions {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 1rem;
+
+      .dragon-details-btn {
+        margin: 10px 0;
+        background-color: $color-blue ;
+        color: $color-white !important;
+
+        &:hover {
+          background-color: $color-black;
+        }
+      }
+    }
+  }
+}

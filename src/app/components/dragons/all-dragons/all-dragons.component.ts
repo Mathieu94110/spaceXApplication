@@ -23,4 +23,7 @@ export class AllDragonsComponent extends DragonsComponent {
     this.updateGridCols();
     window.addEventListener('resize', () => this.updateGridCols());
   }
+  goToDragonDetails(id: string) {
+    this.router.navigate(['/dragons', id])
+  }
 }

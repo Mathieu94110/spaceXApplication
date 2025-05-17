@@ -1,4 +1,5 @@
 export interface IDragon {
+  id: string,
   name: string;
   type: string;
   active: boolean;

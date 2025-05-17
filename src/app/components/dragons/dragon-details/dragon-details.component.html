@@ -1,4 +1,4 @@
-@let capsule = capsuleDetails();
+@let dragon = dragonDetails();
 @if (isLoading()) {
 <div class="loading-container">
   <mat-spinner></mat-spinner>
@@ -8,9 +8,9 @@
 <div class="error-message">
   <p>Erreur : {{ errorMessage() }}</p>
 </div>
-} @else if (capsule) {
-<div class="capsule-details">
-  <app-capsule-card-details [capsuleInfo]="capsule" />
+} @else if (dragon) {
+<div class="dragon-details">
+  <app-dragon-card-details [dragonInfo]="dragon" />
 </div>
 }
 }

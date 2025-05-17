@@ -16,9 +16,11 @@
         <span card-upcoming [ngClass]="launch.upcoming ? 'neutral-color' : 'success-color'">
           {{ launch.upcoming ? 'À venir' : 'Terminé' }}
         </span>
+        <span>
+        </span>
         <span card-action>
-          <button mat-raised-button [disabled]="!launch.links?.article" (click)="goToArticle(launch)">
-            {{ launch.links?.article ? "Regarder l'article" : "Pas d'article" }}
+          <button mat-raised-button (click)="goToLaunchDetails(launch.id)">
+            Voir le detail
           </button>
         </span>
       </app-card-layout>

@@ -1,4 +1,4 @@
-import { Injectable, computed, effect, signal, resource } from '@angular/core';
+import { Injectable, computed, effect, signal, resource, runInInjectionContext, inject, Injector } from '@angular/core';
 import { EMPTY_RESOURCE } from '@app/constants';
 import { DEFAULT_DRAGON_LIMIT } from '@app/constants/launches';
 import { environment } from 'environments/environment';
@@ -8,6 +8,8 @@ import { ILaunch } from 'interfaces/launches';
 
 @Injectable({ providedIn: 'root' })
 export class LaunchesService implements ISearchService<ILaunch> {
+  private injector = inject(Injector);
+
   constructor() {
     effect(() => {
       const queryText = this.searchQuery();
@@ -99,6 +101,30 @@ export class LaunchesService implements ISearchService<ILaunch> {
     }
 
     this.searchLaunchResource.reload();
+  }
+
+  private launchDetailsCache = new Map<string, ReturnType<typeof resource>>();
+
+  getLaunchDetailsResource(id: string) {
+    if (this.launchDetailsCache.has(id)) {
+      return this.launchDetailsCache.get(id)!;
+    }
+
+    const launchRessource = runInInjectionContext(this.injector, () => {
+      return resource({
+        loader: async (): Promise<ILaunch> => {
+          console.log(`${this.launchesUrl}/${id}`)
+          const res = await fetch(`${this.launchesUrl}/${id}`);
+          if (!res.ok) {
+            throw new Error(`API Error : launch ${id} not found`);
+          }
+          return await res.json();
+        }
+      });
+    });
+
+    this.launchDetailsCache.set(id, launchRessource);
+    return launchRessource;
   }
 
   nextPage() {

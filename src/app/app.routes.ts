@@ -39,8 +39,8 @@ export const routes: Routes = [
           .then(m => m.SearchLaunchesComponent)
       }, {
         path: ':id',
-        loadComponent: () => import('./components/capsules/capsule-details/capsule-details.component')
-          .then(m => m.CapsuleDetailsComponent)
+        loadComponent: () => import('./components/launches/launch-details/launch-details.component')
+          .then(m => m.LaunchDetailsComponent)
       }
     ]
   },
@@ -80,6 +80,11 @@ export const routes: Routes = [
         path: 'search',
         loadComponent: () => import('./components/dragons/search-dragon/search-dragon.component')
           .then(m => m.SearchDragonComponent)
+      },
+      {
+        path: ':id',
+        loadComponent: () => import('./components/dragons/dragon-details/dragon-details.component')
+          .then(m => m.DragonDetailsComponent)
       }
     ]
   },

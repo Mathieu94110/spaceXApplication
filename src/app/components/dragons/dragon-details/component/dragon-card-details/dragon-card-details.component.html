@@ -1,0 +1,75 @@
+@let dragon = dragonInfo();
+
+@if (dragon) {
+<div class="dragon-details">
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="dragon-avatar"></div>
+      <mat-card-title>{{ dragon.name }}</mat-card-title>
+      <mat-card-subtitle>{{ dragon.type }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <img [src]="dragon.flickr_images?.[0] || 'assets/icons/dragon.jpg'" alt="{{ dragon.name }}" class="dragon-image" />
+
+    <mat-card-content>
+      <p><strong>Status:</strong> {{ dragon.active ? 'Active' : 'Inactive' }}</p>
+      <p><strong>Crew Capacity:</strong> {{ dragon.crew_capacity }}</p>
+      <p><strong>Orbit Duration (years):</strong> {{ dragon.orbit_duration_yr }}</p>
+      <p><strong>Dry Mass:</strong> {{ dragon.dry_mass_kg }} kg / {{ dragon.dry_mass_lb }} lb</p>
+      <p *ngIf="dragon.first_flight"><strong>First Flight:</strong> {{ dragon.first_flight }}</p>
+
+      <div class="section">
+        <h3>Heat Shield</h3>
+        <p><strong>Material:</strong> {{ dragon.heat_shield.material }}</p>
+        <p><strong>Size:</strong> {{ dragon.heat_shield.size_meters }} m</p>
+        <p *ngIf="dragon.heat_shield.temp_degrees"><strong>Max Temp:</strong> {{ dragon.heat_shield.temp_degrees }} °C
+        </p>
+        <p *ngIf="dragon.heat_shield.dev_partner"><strong>Partner:</strong> {{ dragon.heat_shield.dev_partner }}</p>
+      </div>
+
+      <div class="section" *ngIf="dragon.height_w_trunk || dragon.diameter">
+        <h3>Dimensions</h3>
+        <p *ngIf="dragon.height_w_trunk"><strong>Height (with trunk):</strong> {{ dragon.height_w_trunk.meters }} m / {{
+          dragon.height_w_trunk.feet }} ft</p>
+        <p *ngIf="dragon.diameter"><strong>Diameter:</strong> {{ dragon.diameter.meters }} m / {{ dragon.diameter.feet
+          }} ft</p>
+      </div>
+
+      <div class="section" *ngIf="dragon.trunk">
+        <h3>Trunk</h3>
+        <p *ngIf="dragon.trunk.trunk_volume"><strong>Volume:</strong> {{ dragon.trunk.trunk_volume.cubic_meters }} m³ /
+          {{ dragon.trunk.trunk_volume.cubic_feet }} ft³</p>
+        <p *ngIf="dragon.trunk.cargo">
+          <strong>Solar Arrays:</strong> {{ dragon.trunk.cargo.solar_array }}<br />
+          <strong>Unpressurized Cargo:</strong> {{ dragon.trunk.cargo.unpressurized_cargo ? 'Yes' : 'No' }}
+        </p>
+      </div>
+
+      <div class="section" *ngIf="dragon.pressurized_capsule?.payload_volume">
+        <h3>Pressurized Capsule</h3>
+        <p><strong>Payload Volume:</strong> {{ dragon.pressurized_capsule?.payload_volume?.cubic_meters }} m³ / {{
+          dragon.pressurized_capsule?.payload_volume?.cubic_feet }} ft³</p>
+      </div>
+
+      <div class="section" *ngIf="dragon.launch_payload_mass || dragon.return_payload_mass">
+        <h3>Payloads</h3>
+        <p *ngIf="dragon.launch_payload_mass"><strong>Launch Payload:</strong> {{ dragon.launch_payload_mass.kg }} kg /
+          {{ dragon.launch_payload_mass.lb }} lb</p>
+        <p *ngIf="dragon.return_payload_mass"><strong>Return Payload:</strong> {{ dragon.return_payload_mass.kg }} kg /
+          {{ dragon.return_payload_mass.lb }} lb</p>
+      </div>
+
+      <p *ngIf="dragon.description"><strong>Description:</strong> {{ dragon.description }}</p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <a *ngIf="dragon.wikipedia" [href]="dragon.wikipedia" target="_blank" rel="noopener noreferrer">
+        <button mat-button color="primary">
+          <mat-icon>language</mat-icon> Wikipedia
+        </button>
+      </a>
+      <button mat-button routerLink="/dragons" class="dragon-details-btn">Back to list</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+}
