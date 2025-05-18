@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CapsuleDetailsComponent } from './capsule-details.component';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('CapsuleDetailsComponent', () => {
   let component: CapsuleDetailsComponent;
@@ -8,7 +9,20 @@ describe('CapsuleDetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CapsuleDetailsComponent]
+      imports: [CapsuleDetailsComponent],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              paramMap: {
+                get: (key: string) => 'C-102',
+              }
+            },
+            params: of({ id: 'C-102' }),
+          }
+        }
+      ]
     })
       .compileComponents();
 

@@ -70,7 +70,8 @@ export const mockDragons: IDragon[] = [
       'https://imgur.com/azYafd8.jpg'
     ],
     wikipedia: 'https://en.wikipedia.org/wiki/SpaceX_Dragon',
-    description: 'Dragon is a reusable spacecraft developed by SpaceX.'
+    description: 'Dragon is a reusable spacecraft developed by SpaceX.',
+    id: "rsdfsdfdfglll"
   },
   {
     name: 'Dragon 2',
@@ -141,7 +142,8 @@ export const mockDragons: IDragon[] = [
       'https://imgur.com/2.jpg'
     ],
     wikipedia: 'https://en.wikipedia.org/wiki/Dragon_2',
-    description: 'Dragon 2 is the second generation of SpaceX’s Dragon spacecraft.'
+    description: 'Dragon 2 is the second generation of SpaceX’s Dragon spacecraft.',
+    id: "dfddfsdfdfglll"
   },
   {
     name: 'Dragon XL',
@@ -212,7 +214,8 @@ export const mockDragons: IDragon[] = [
       'https://imgur.com/dragonxl2.jpg'
     ],
     wikipedia: 'https://en.wikipedia.org/wiki/Dragon_XL',
-    description: 'Dragon XL is a planned cargo spacecraft for the Lunar Gateway mission.'
+    description: 'Dragon XL is a planned cargo spacecraft for the Lunar Gateway mission.',
+    id: 'dsqdffogogog'
   }
 ];
 

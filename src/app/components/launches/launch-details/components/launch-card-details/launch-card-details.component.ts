@@ -8,6 +8,7 @@ import { ILaunch } from 'interfaces/launches';
 
 @Component({
   selector: 'app-launch-card-details',
+  standalone: true,
   imports: [CommonModule, MatIconModule, MatButtonModule, MatCardModule, RouterModule],
   templateUrl: './launch-card-details.component.html',
   styleUrl: './launch-card-details.component.scss'

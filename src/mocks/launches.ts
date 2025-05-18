@@ -11,5 +11,6 @@ export const mockLaunch: ILaunch = {
   date_unix: 0,
   date_local: "",
   date_precision: "half",
-  upcoming: false
+  upcoming: false,
+  id: 'sfsdgds'
 };

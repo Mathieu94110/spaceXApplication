@@ -113,7 +113,6 @@ export class LaunchesService implements ISearchService<ILaunch> {
     const launchRessource = runInInjectionContext(this.injector, () => {
       return resource({
         loader: async (): Promise<ILaunch> => {
-          console.log(`${this.launchesUrl}/${id}`)
           const res = await fetch(`${this.launchesUrl}/${id}`);
           if (!res.ok) {
             throw new Error(`API Error : launch ${id} not found`);

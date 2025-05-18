@@ -5,7 +5,6 @@ import { MatCardModule } from '@angular/material/card';
 import { RouterLink } from '@angular/router';
 import { CAPSULE_INFO_TOKEN } from '@app/constants/capsules';
 import { ICapsule } from 'interfaces/capsules';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-capsule-card',
