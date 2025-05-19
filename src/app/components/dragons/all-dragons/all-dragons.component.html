@@ -6,7 +6,8 @@
   } @else if (dragons()) {
   <div class="all-dragons">
     <mat-grid-list [cols]="gridCols" rowHeight="458px" [gutterSize]="'24px'">
-      <mat-grid-tile *ngFor="let dragon of dragons()!" [colspan]="1" [rowspan]="1">
+      @for(dragon of dragons()!; track dragon.id){
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
         <app-card-layout class="all-dragons-card">
           <span card-title>{{dragon.name}} {{dragon.type}}</span>
           <span card-subtitle>{{dragon.first_flight | date:'dd/MM/yyyy HH:mm:ss'}}</span>
@@ -25,6 +26,8 @@
           </span>
         </app-card-layout>
       </mat-grid-tile>
+      }
+
     </mat-grid-list>
   </div>
   } @else if (dragonsError()) {

@@ -5,7 +5,8 @@
 } @else if (launches()) {
 <div class="all-launches">
   <mat-grid-list [cols]="gridCols" rowHeight="458px" [gutterSize]="'24px'">
-    <mat-grid-tile *ngFor="let launch of launches()!" [colspan]="1" [rowspan]="1">
+    @for(launch of launches()!; track launch.id){
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
       <app-card-layout class="all-launches-card">
         <span card-title>{{launch.name}}</span>
         <span card-subtitle>{{launch.date_utc | date:'dd/MM/yyyy HH:mm:ss'}}</span>
@@ -25,6 +26,7 @@
         </span>
       </app-card-layout>
     </mat-grid-tile>
+    }
   </mat-grid-list>
 </div>
 } @else if (launchesError()) {

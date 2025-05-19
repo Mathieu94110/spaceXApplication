@@ -16,59 +16,82 @@
       <p><strong>Crew Capacity:</strong> {{ dragon.crew_capacity }}</p>
       <p><strong>Orbit Duration (years):</strong> {{ dragon.orbit_duration_yr }}</p>
       <p><strong>Dry Mass:</strong> {{ dragon.dry_mass_kg }} kg / {{ dragon.dry_mass_lb }} lb</p>
-      <p *ngIf="dragon.first_flight"><strong>First Flight:</strong> {{ dragon.first_flight }}</p>
+      @if(dragon.first_flight){
+      <p><strong>First Flight:</strong> {{ dragon.first_flight }}</p>
+      }
+
 
       <div class="section">
         <h3>Heat Shield</h3>
         <p><strong>Material:</strong> {{ dragon.heat_shield.material }}</p>
         <p><strong>Size:</strong> {{ dragon.heat_shield.size_meters }} m</p>
-        <p *ngIf="dragon.heat_shield.temp_degrees"><strong>Max Temp:</strong> {{ dragon.heat_shield.temp_degrees }} °C
-        </p>
-        <p *ngIf="dragon.heat_shield.dev_partner"><strong>Partner:</strong> {{ dragon.heat_shield.dev_partner }}</p>
+        @if(dragon.heat_shield.temp_degrees){
+        <p><strong>Max Temp:</strong> {{ dragon.heat_shield.temp_degrees }} °C </p>
+        }
+        @if(dragon.heat_shield.dev_partner){
+        <p><strong>Partner:</strong> {{ dragon.heat_shield.dev_partner }}</p>
+        }
       </div>
-
-      <div class="section" *ngIf="dragon.height_w_trunk || dragon.diameter">
+      @if(dragon.height_w_trunk || dragon.diameter){
+      <div class="section">
         <h3>Dimensions</h3>
-        <p *ngIf="dragon.height_w_trunk"><strong>Height (with trunk):</strong> {{ dragon.height_w_trunk.meters }} m / {{
+        @if(dragon.height_w_trunk){
+        <p><strong>Height (with trunk):</strong> {{ dragon.height_w_trunk.meters }} m / {{
           dragon.height_w_trunk.feet }} ft</p>
-        <p *ngIf="dragon.diameter"><strong>Diameter:</strong> {{ dragon.diameter.meters }} m / {{ dragon.diameter.feet
+        }@if(dragon.diameter){
+        <p><strong>Diameter:</strong> {{ dragon.diameter.meters }} m / {{ dragon.diameter.feet
           }} ft</p>
+        }
       </div>
-
-      <div class="section" *ngIf="dragon.trunk">
+      }
+      @if(dragon.trunk){
+      <div class="section">
         <h3>Trunk</h3>
-        <p *ngIf="dragon.trunk.trunk_volume"><strong>Volume:</strong> {{ dragon.trunk.trunk_volume.cubic_meters }} m³ /
+        @if(dragon.trunk.trunk_volume){
+        <p><strong>Volume:</strong> {{ dragon.trunk.trunk_volume.cubic_meters }} m³ /
           {{ dragon.trunk.trunk_volume.cubic_feet }} ft³</p>
-        <p *ngIf="dragon.trunk.cargo">
+        }
+        @if(dragon.trunk.cargo){
+        <p>
           <strong>Solar Arrays:</strong> {{ dragon.trunk.cargo.solar_array }}<br />
           <strong>Unpressurized Cargo:</strong> {{ dragon.trunk.cargo.unpressurized_cargo ? 'Yes' : 'No' }}
         </p>
+        }
       </div>
-
-      <div class="section" *ngIf="dragon.pressurized_capsule?.payload_volume">
+      }
+      @if(dragon.pressurized_capsule?.payload_volume){
+      <div class="section">
         <h3>Pressurized Capsule</h3>
         <p><strong>Payload Volume:</strong> {{ dragon.pressurized_capsule?.payload_volume?.cubic_meters }} m³ / {{
           dragon.pressurized_capsule?.payload_volume?.cubic_feet }} ft³</p>
       </div>
-
-      <div class="section" *ngIf="dragon.launch_payload_mass || dragon.return_payload_mass">
+      }
+      @if(dragon.launch_payload_mass || dragon.return_payload_mass){
+      <div class="section">
         <h3>Payloads</h3>
-        <p *ngIf="dragon.launch_payload_mass"><strong>Launch Payload:</strong> {{ dragon.launch_payload_mass.kg }} kg /
-          {{ dragon.launch_payload_mass.lb }} lb</p>
-        <p *ngIf="dragon.return_payload_mass"><strong>Return Payload:</strong> {{ dragon.return_payload_mass.kg }} kg /
-          {{ dragon.return_payload_mass.lb }} lb</p>
+        @if(dragon.launch_payload_mass ){
+        <p><strong>Launch Payload:</strong> {{ dragon.launch_payload_mass.kg || 'Unknown'}} kg /
+          {{ dragon.launch_payload_mass.lb || 'Unknown' }} lb</p>
+        }
+        @if(dragon.return_payload_mass){
+        <p><strong>Return Payload:</strong> {{ dragon.return_payload_mass.kg || 'Unknown'}} kg /
+          {{ dragon.return_payload_mass.lb || 'Unknown' }} lb</p>
+        }
       </div>
-
-      <p *ngIf="dragon.description"><strong>Description:</strong> {{ dragon.description }}</p>
+      }
+      @if(dragon.description){
+      <p><strong>Description:</strong> {{ dragon.description }}</p>
+      }
     </mat-card-content>
 
     <mat-card-actions>
-      <a *ngIf="dragon.wikipedia" [href]="dragon.wikipedia" target="_blank" rel="noopener noreferrer">
+      @if(dragon.wikipedia){
+      <a [href]="dragon.wikipedia" target="_blank" rel="noopener noreferrer">
         <button mat-button color="primary">
           <mat-icon>language</mat-icon> Wikipedia
         </button>
       </a>
-      <button mat-button routerLink="/dragons" class="dragon-details-btn">Retour à la liste</button>
+      } <button mat-button routerLink="/dragons" class="dragon-details-btn">Retour à la liste</button>
     </mat-card-actions>
   </mat-card>
 </div>

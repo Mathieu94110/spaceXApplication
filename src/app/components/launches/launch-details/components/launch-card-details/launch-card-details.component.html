@@ -3,90 +3,144 @@
 @if (launchDetails) {
 <mat-card>
   <mat-card-header>
-    <img *ngIf="launchDetails.links?.patch?.small" [src]="launchDetails.links?.patch?.small"
-      alt="Patch {{ launchDetails.name }}" class="patch-image" />
+    @if (launchDetails.links?.patch?.small) {
+    <img [src]="launchDetails.links?.patch?.small" alt="Patch {{ launchDetails.name }}" class="patch-image" />
+    }
     <mat-card-title>{{ launchDetails.name }} (Flight #{{ launchDetails.flight_number }})</mat-card-title>
-    <mat-card-subtitle>{{ launchDetails.date_local | date:'medium' }}</mat-card-subtitle>
+    <mat-card-subtitle>{{ launchDetails.date_local | date: 'medium' }}</mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content>
-    <p><strong>Status:</strong>
-      <span [ngClass]="{'success': launchDetails.success, 'failed': launchDetails.success === false}">
-        {{ launchDetails.success ? 'Success' : (launchDetails.success === false ? 'Failure' : 'Unknown') }}
+    <p>
+      <strong>Status:</strong>
+      <span [ngClass]="{
+            success: launchDetails.success,
+            failed: launchDetails.success === false
+          }">
+        {{
+        launchDetails.success
+        ? 'Success'
+        : (launchDetails.success === false ? 'Failure' : 'Unknown')
+        }}
       </span>
     </p>
-    <p><strong>UTC Date:</strong> {{ launchDetails.date_utc | date:'medium' }}</p>
-    <p><strong>Local Date:</strong> {{ launchDetails.date_local | date:'medium' }}</p>
+
+    <p><strong>UTC Date:</strong> {{ launchDetails.date_utc | date: 'medium' }}</p>
+    <p><strong>Local Date:</strong> {{ launchDetails.date_local | date: 'medium' }}</p>
     <p><strong>Date Precision:</strong> {{ launchDetails.date_precision }}</p>
-    <p *ngIf="launchDetails.static_fire_date_utc">
-      <strong>Static Fire Test (UTC):</strong> {{ launchDetails.static_fire_date_utc | date:'medium' }}
+    @if (launchDetails.static_fire_date_utc) {
+    <p>
+      <strong>Static Fire Test (UTC):</strong>
+      {{ launchDetails.static_fire_date_utc | date: 'medium' }}
     </p>
+    }
+
     <p><strong>TBD:</strong> {{ launchDetails.tdb ? 'Yes' : 'No' }}</p>
     <p><strong>NET:</strong> {{ launchDetails.net ? 'Yes' : 'No' }}</p>
-    <p *ngIf="launchDetails.window !== null"><strong>Launch Window:</strong> {{ launchDetails.window }} sec</p>
-    <p *ngIf="launchDetails.rocket"><strong>Rocket ID:</strong> {{ launchDetails.rocket }}</p>
-    <p *ngIf="launchDetails.launchpad"><strong>Launchpad ID:</strong> {{ launchDetails.launchpad }}</p>
+    @if (launchDetails.window !== null) {
+    <p><strong>Launch Window:</strong> {{ launchDetails.window }} sec</p>
+    }
+    @if (launchDetails.rocket) {
+    <p><strong>Rocket ID:</strong> {{ launchDetails.rocket }}</p>
+    }
+    @if (launchDetails.launchpad) {
+    <p><strong>Launchpad ID:</strong> {{ launchDetails.launchpad }}</p>
+    }
 
-    <div *ngIf="launchDetails.cores?.length">
+    @if (launchDetails.cores?.length) {
+    <div>
       <strong>Cores:</strong>
       <ul>
-        <li *ngFor="let core of launchDetails.cores">
-          Core ID: {{ core.core }}, Flights: {{ core.flight }},
+        @for (core of launchDetails.cores; track core.core) {
+        <li>
+          Core ID: {{ core.core }},
+          Flights: {{ core.flight }},
           Reused: {{ core.reused ? 'Yes' : 'No' }},
-          Landing: {{
+          Landing:
+          {{
           core.landing_success === true
           ? 'Success'
           : (core.landing_success === false ? 'Failure' : 'Unknown')
           }}
         </li>
+        }
       </ul>
     </div>
+    }
 
-    <div *ngIf="launchDetails.failures?.length">
+    @if (launchDetails.failures?.length) {
+    <div>
       <strong>Failures:</strong>
       <ul>
-        <li *ngFor="let fail of launchDetails.failures">
-          Reason: {{ fail.reason }}, Altitude: {{ fail.altitude ?? 'Unknown' }}, Time: {{ fail.time }}s
+        @for (fail of launchDetails.failures; track fail.time) {
+        <li>
+          Reason: {{ fail.reason }},
+          Altitude: {{ fail.altitude ?? 'Unknown' }},
+          Time: {{ fail.time }}s
         </li>
+        }
       </ul>
     </div>
+    }
 
-    <div *ngIf="launchDetails.fairings">
+    @if (launchDetails.fairings) {
+    <div>
       <strong>Fairings:</strong>
       <p>Reused: {{ launchDetails.fairings.reused ? 'Yes' : 'No' }}</p>
       <p>Recovered: {{ launchDetails.fairings.recovered ? 'Yes' : 'No' }}</p>
     </div>
+    }
 
-    <p *ngIf="launchDetails.crew?.length"><strong>Crew:</strong> {{ launchDetails.crew?.join(', ') }}</p>
-    <p *ngIf="launchDetails.capsules?.length"><strong>Capsules:</strong> {{ launchDetails.capsules?.join(', ') }}</p>
-    <p *ngIf="launchDetails.ships?.length"><strong>Ships:</strong> {{ launchDetails.ships?.join(', ') }}</p>
-    <p *ngIf="launchDetails.payloads?.length"><strong>Payloads:</strong> {{ launchDetails.payloads?.join(', ') }}</p>
-    <p *ngIf="launchDetails.details"><strong>Details:</strong> {{ launchDetails.details }}</p>
+    @if (launchDetails.crew?.length) {
+    <p><strong>Crew:</strong> {{ launchDetails.crew!.join(', ') }}</p>
+    }
 
-    <div class="launch-details-link-container" *ngIf="launchDetails.links?.article">
+    @if (launchDetails.capsules?.length) {
+    <p><strong>Capsules:</strong> {{ launchDetails.capsules!.join(', ') }}</p>
+    }
+
+    @if (launchDetails.ships?.length) {
+    <p><strong>Ships:</strong> {{ launchDetails.ships!.join(', ') }}</p>
+    }
+
+    @if (launchDetails.payloads?.length) {
+    <p><strong>Payloads:</strong> {{ launchDetails.payloads!.join(', ') }}</p>
+    }
+
+    @if (launchDetails.details) {
+    <p><strong>Details:</strong> {{ launchDetails.details }}</p>
+    }
+
+    @if (launchDetails.links?.article) {
+    <div class="launch-details-link-container">
       <strong>Article:</strong>
-      <a [href]="launchDetails.links?.article" target="_blank" rel="noopener noreferrer" class="launch-link-icon">
+      <a [href]="launchDetails.links!.article" target="_blank" rel="noopener noreferrer" class="launch-link-icon">
         <mat-icon>link</mat-icon>
       </a>
     </div>
+    }
 
-    <div class="launch-details-link-container" *ngIf="launchDetails.links?.wikipedia">
+    @if (launchDetails.links?.wikipedia) {
+    <div class="launch-details-link-container">
       <strong>Wikipedia:</strong>
-      <a [href]="launchDetails.links?.wikipedia" target="_blank" rel="noopener noreferrer" class="launch-link-icon">
+      <a [href]="launchDetails.links!.wikipedia" target="_blank" rel="noopener noreferrer" class="launch-link-icon">
         <mat-icon>link</mat-icon>
       </a>
     </div>
+    }
 
-    <div class="launch-details-link-container" *ngIf="launchDetails.links?.webcast">
+    @if (launchDetails.links?.webcast) {
+    <div class="launch-details-link-container">
       <strong>Webcast:</strong>
-      <a [href]="launchDetails.links?.webcast" target="_blank" rel="noopener noreferrer" class="launch-link-icon">
+      <a [href]="launchDetails.links!.webcast" target="_blank" rel="noopener noreferrer" class="launch-link-icon">
         <mat-icon>link</mat-icon>
       </a>
     </div>
+    }
   </mat-card-content>
 
   <mat-card-actions>
-    <button mat-button routerLink="/launches" class="launch-details-btn">Retour à la liste</button>
+    <button mat-button routerLink="/launches" class="launch-details-btn">Back to List</button>
   </mat-card-actions>
 </mat-card>
 }

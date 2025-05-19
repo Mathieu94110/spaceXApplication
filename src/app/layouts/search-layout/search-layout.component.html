@@ -11,10 +11,10 @@
     @if(list().length > 0){
     <ng-container>
       <div class="results-container">
-        <ng-container *ngFor="let item of list()">
-          <ng-container *ngComponentOutlet="cardComponent; injector: createInjector(item)">
-          </ng-container>
+        @for(item of list(); track $index){
+        <ng-container *ngComponentOutlet="cardComponent; injector: createInjector(item)">
         </ng-container>
+        }
       </div>
     </ng-container>
     }

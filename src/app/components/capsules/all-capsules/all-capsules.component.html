@@ -10,7 +10,8 @@
   <div>
     <div class="all-capsules">
       <mat-grid-list [cols]="gridCols" rowHeight="600" [gutterSize]="'24px'">
-        <mat-grid-tile *ngFor="let capsule of capsules()" [colspan]="1" [rowspan]="1">
+        @for(capsule of capsules(); track capsule.id){
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
           <app-card-layout class="all-capsules-card">
             <span card-title>{{capsule.serial}} <span> {{capsule.type}}</span></span>
             <div card-img class="all-capsules-card-stats-container">
@@ -35,6 +36,7 @@
             </span>
           </app-card-layout>
         </mat-grid-tile>
+        }
       </mat-grid-list>
     </div>
   </div>
