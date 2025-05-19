@@ -2,7 +2,7 @@ export const HOME_NAV_LINKS = [
   { title: 'lancements', link: "/launches" },
   { title: 'capsules', link: "/capsules" },
   { title: 'dragons', link: "/dragons" },
-  { title: 'plateformes de lancement', link: "/landpads" },
+  { title: 'plateformes de lancement', link: "/launch-pads" },
   { title: 'missions', link: "/crew" }
 ];
 
@@ -22,4 +22,9 @@ export const CAPSULES_NAV_LINKS = [
 export const DRAGONS_NAV_LINKS = [
   { title: 'tout', link: '/capsules' },
   { title: 'rechercher', link: '/dragons/search' }
+];
+
+export const LAUNCH_PADS_NAV_LINKS = [
+  { title: 'tout', link: '/launch-pads' },
+  { title: 'rechercher', link: '/launch-pads/search' }
 ];

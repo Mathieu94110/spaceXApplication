@@ -89,6 +89,28 @@ export const routes: Routes = [
     ]
   },
   {
+    path: 'launch-pads',
+    loadComponent: () => import('./views/dragons/dragons.component')
+      .then(m => m.DragonsComponent),
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./components/launch-pads/all-launch-pads/all-launch-pads.component')
+          .then(m => m.AllLaunchPadsComponent)
+      },
+      {
+        path: 'search',
+        loadComponent: () => import('./components/launch-pads/search-launch-pads/search-launch-pads.component')
+          .then(m => m.SearchLaunchPadsComponent)
+      },
+      {
+        path: ':id',
+        loadComponent: () => import('./components/launch-pads/launch-pad-details/launch-pad-details.component')
+          .then(m => m.LaunchPadDetailsComponent)
+      }
+    ]
+  },
+  {
     path: '',
     redirectTo: '',
     pathMatch: 'full'

@@ -1,0 +1,41 @@
+<ng-container>
+  @if (launchPadsIsLoading()) {
+  <div class="spinner-container">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+  } @else if (launchPads()) {
+  <div class="all-launch-pads">
+    <mat-grid-list [cols]="gridCols" rowHeight="458px" [gutterSize]="'24px'">
+      @for (pad of launchPads(); track pad.id) {
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <app-card-layout class="all-launch-pads-card">
+          <span card-title>{{ pad.name }}</span>
+          <span card-subtitle>{{ pad.full_name }}</span>
+          <span card-img>
+            <img mat-card-image [src]="pad.images.large[0] || 'assets/icons/launchpad.jpg'" alt="{{ pad.name }}" />
+          </span>
+          <span card-description>
+            Location: {{ pad.locality || 'Unknown' }}, {{ pad.region || 'Unknown' }}<br />
+            Timezone: {{ pad.timezone || 'N/A' }}<br />
+            Launches: {{ pad.launch_successes }}/{{ pad.launch_attempts }}
+          </span>
+
+          <span card-upcoming [ngClass]="pad.status === 'active' ? 'success-color' : 'neutral-color'">
+            {{ pad.status | titlecase }}
+          </span>
+          <span card-action>
+            <button mat-raised-button color="primary" (click)="goToLaunchPadDetails(pad.id)">
+              Voir les détails
+            </button>
+          </span>
+        </app-card-layout>
+      </mat-grid-tile>
+      }
+    </mat-grid-list>
+  </div>
+  } @else if (launchPadsError()) {
+  <div class="all-launch-pads-full-screen">
+    <h2>{{ errorMsg }}</h2>
+  </div>
+  }
+</ng-container>
