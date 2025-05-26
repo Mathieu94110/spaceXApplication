@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SearchLaunchPadsComponent } from './search-launch-pads.component';
 
 describe('SearchLaunchPadsComponent', () => {
@@ -10,7 +9,7 @@ describe('SearchLaunchPadsComponent', () => {
     await TestBed.configureTestingModule({
       imports: [SearchLaunchPadsComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(SearchLaunchPadsComponent);
     component = fixture.componentInstance;

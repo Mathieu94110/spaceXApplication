@@ -7,10 +7,10 @@ import { LaunchPadsService } from 'services/launch-pads.service';
 import { ILaunch } from 'interfaces/launches';
 
 @Component({
-  selector: 'app-launch-pads',
+  selector: 'app-launchpads',
   imports: [RouterModule, NavigationLayoutComponent],
-  templateUrl: './launch-pads.component.html',
-  styleUrl: './launch-pads.component.scss'
+  templateUrl: './launchpads.component.html',
+  styleUrl: './launchpads.component.scss'
 })
 export class LaunchPadsComponent {
   protected readonly router = inject(Router);

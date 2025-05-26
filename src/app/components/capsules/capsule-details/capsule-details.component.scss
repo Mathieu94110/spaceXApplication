@@ -1,16 +1,5 @@
 @use 'variables' as *;
 
-.capsule-details {
-  max-width: 1400px;
-  margin-inline: auto;
-  margin-top: 100px;
-  margin-bottom: 50px;
-  padding-inline: 16px;
-  height: calc(100vh - 150px);
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
 .loading-container,
 .error-container {
   display: flex;

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AllLaunchPadsComponent } from './all-launch-pads.component';
+import { AllLaunchPadsComponent } from './all-launchpads.component';
 
 describe('AllLaunchPadsComponent', () => {
   let component: AllLaunchPadsComponent;
@@ -10,7 +10,7 @@ describe('AllLaunchPadsComponent', () => {
     await TestBed.configureTestingModule({
       imports: [AllLaunchPadsComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(AllLaunchPadsComponent);
     component = fixture.componentInstance;

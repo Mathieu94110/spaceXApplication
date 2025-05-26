@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LaunchPadsComponent } from './launch-pads.component';
+import { LaunchPadsComponent } from './launchpads.component';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 

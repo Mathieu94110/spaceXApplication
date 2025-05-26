@@ -4,22 +4,22 @@
     <mat-spinner diameter="50"></mat-spinner>
   </div>
   } @else if (launchPads()) {
-  <div class="all-launch-pads">
+  <div class="all-launchpads">
     <mat-grid-list [cols]="gridCols" rowHeight="458px" [gutterSize]="'24px'">
       @for (pad of launchPads(); track pad.id) {
       <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <app-card-layout class="all-launch-pads-card">
-          <span card-title>{{ pad.name }}</span>
-          <span card-subtitle>{{ pad.full_name }}</span>
+        <app-card-layout class="all-launchpads-card">
+          <span card-title>{{ pad.name || 'Unnamed' }}</span>
+          <span card-subtitle>{{ pad.full_name || 'No full name' }}</span>
           <span card-img>
-            <img mat-card-image [src]="pad.images.large[0] || 'assets/icons/launchpad.jpg'" alt="{{ pad.name }}" />
+            <img mat-card-image [src]="pad?.images?.large?.[0] || 'assets/icons/launchpad.jpg'"
+              alt="{{ pad.name || 'Unnamed Launch Pad' }}" />
           </span>
           <span card-description>
             Location: {{ pad.locality || 'Unknown' }}, {{ pad.region || 'Unknown' }}<br />
-            Timezone: {{ pad.timezone || 'N/A' }}<br />
-            Launches: {{ pad.launch_successes }}/{{ pad.launch_attempts }}
+            Coordinates: {{ pad.latitude ?? 'N/A' }}, {{ pad.longitude ?? 'N/A' }}<br />
+            Landings: {{ pad.landing_successes }}/{{ pad.landing_attempts }}
           </span>
-
           <span card-upcoming [ngClass]="pad.status === 'active' ? 'success-color' : 'neutral-color'">
             {{ pad.status | titlecase }}
           </span>
@@ -34,7 +34,7 @@
     </mat-grid-list>
   </div>
   } @else if (launchPadsError()) {
-  <div class="all-launch-pads-full-screen">
+  <div class="all-launchpads-full-screen">
     <h2>{{ errorMsg }}</h2>
   </div>
   }

@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { LaunchPadCardComponent } from './launch-pad-card.component';
+import { LaunchPadCardComponent } from './launchpad-card.component';
 
 describe('LaunchPadsCardComponent', () => {
   let component: LaunchPadCardComponent;

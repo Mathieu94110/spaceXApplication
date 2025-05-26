@@ -1,5 +1,4 @@
-@let launch = launchDetails();
-
+@let launchPad = launchPadDetails();
 @if (isLoading()) {
 <div class="loading-container">
   <mat-spinner></mat-spinner>
@@ -7,11 +6,11 @@
 } @else {
 @if (errorMessage()) {
 <div class="error-message">
-  <p>Error: {{ errorMessage() }}</p>
+  <p>Erreur : {{ errorMessage() }}</p>
 </div>
-} @else if (launch) {
+} @else if (launchPad) {
 <div class="details-container">
-  <app-launch-card-details [launchInfo]="launch" />
+  <app-launchpad-card-details [launchPadInfo]="launchPad" />
 </div>
 }
 }

@@ -6,23 +6,22 @@ export type LaunchPadStatus =
   | 'lost'
   | 'under construction';
 
-type ILaunchPadImg = {
-  large: string[]
-}
-
 export interface ILaunchPad {
   name: string | null;
   full_name: string | null;
   status: LaunchPadStatus;
+  type: string | null;
   locality: string | null;
   region: string | null;
-  timezone: string | null;
   latitude: number | null;
   longitude: number | null;
-  launch_attempts: number;
-  launch_successes: number;
-  rockets: string[];
+  landing_attempts: number;
+  landing_successes: number;
+  wikipedia: string | null;
+  details: string | null;
   launches: string[];
-  images: ILaunchPadImg;
+  images?: {
+    large: string[]
+  }
   id: string
 }

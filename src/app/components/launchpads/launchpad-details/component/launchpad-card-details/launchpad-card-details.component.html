@@ -1,0 +1,48 @@
+@let launchPad = launchPadInfo();
+
+@if (launchPad) {
+<div class="launchpad-card-details">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ launchPad.name || 'Unnamed Launch Pad' }}</mat-card-title>
+      <mat-card-subtitle>{{ launchPad.full_name || 'No full name available' }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <img [src]="launchPad?.images?.large?.[0] || 'assets/icons/launchpad.jpg'"
+      [alt]="launchPad.name ?? 'Launch Pad Image'" class="launchpad-card-image" />
+
+    <mat-card-content>
+      <p><strong>Status:</strong> {{ launchPad.status }}</p>
+      <p><strong>Location:</strong> {{ launchPad.locality }}, {{ launchPad.region }}</p>
+      <p><strong>Coordinates:</strong> {{ launchPad.latitude }}, {{ launchPad.longitude }}</p>
+
+      <p>
+        <strong>Landing Attempts:</strong> {{ launchPad.landing_attempts ?? 0}}<br />
+        <strong>Landing Successes:</strong> {{ launchPad.landing_successes ?? 0}}
+      </p>
+      @if(launchPad.details){
+      <p><strong>Details:</strong> {{ launchPad.details }}</p>
+      }
+      @if(launchPad.wikipedia){
+      <p>
+        <a [href]="launchPad.wikipedia" target="_blank">Wikipedia</a>
+      </p>
+      }
+      @if (launchPad.launches.length) {
+      <div class="section">
+        <h3>Launches</h3>
+        <ul>
+          @for (launch of launchPad.launches; track $index) {
+          <li>{{ launch }}</li>
+          }
+        </ul>
+      </div>
+      }
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-button routerLink="/launchpads" class="go-back-btn">Retour à la liste</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+}
