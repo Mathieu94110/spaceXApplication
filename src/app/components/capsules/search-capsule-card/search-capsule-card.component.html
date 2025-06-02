@@ -1,15 +1,13 @@
 @if(capsuleInfo){
-<a [routerLink]="['/capsules', capsuleInfo.id]">
-  <mat-card class="search-card">
-    <mat-card-title>{{ capsuleInfo.serial }}</mat-card-title>
-    <mat-card-subtitle>{{ capsuleInfo.type }}</mat-card-subtitle>
-    <mat-card-content>
-      <div class="search-card-info-line"><strong>Reuse count:</strong> {{ capsuleInfo.reuse_count }}</div>
-      <div class="search-card-info-line"><strong>Water landings:</strong> {{ capsuleInfo.water_landings }}</div>
-      <div class="search-card-info-line"><strong>Status:</strong> {{ capsuleInfo.status }}</div>
-      <div class="search-card-info-line"><strong>Update:</strong> {{ capsuleInfo.last_update || 'Aucune information
-        disponible' | slice: 0:80 }}...</div>
-    </mat-card-content>
-  </mat-card>
-</a>
+<mat-card class="search-card" (click)="goToCapsuleDetails(capsuleInfo.id)">
+  <mat-card-title>{{ capsuleInfo.serial }}</mat-card-title>
+  <mat-card-subtitle>{{ capsuleInfo.type }}</mat-card-subtitle>
+  <mat-card-content>
+    <div class="search-card-info-line"><strong>Reuse count:</strong> {{ capsuleInfo.reuse_count }}</div>
+    <div class="search-card-info-line"><strong>Water landings:</strong> {{ capsuleInfo.water_landings }}</div>
+    <div class="search-card-info-line"><strong>Status:</strong> {{ capsuleInfo.status }}</div>
+    <div class="search-card-info-line"><strong>Update:</strong> {{ capsuleInfo.last_update || 'Aucune information
+      disponible' | slice: 0:80 }}...</div>
+  </mat-card-content>
+</mat-card>
 }

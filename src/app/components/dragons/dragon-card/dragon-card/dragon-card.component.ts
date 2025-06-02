@@ -3,6 +3,7 @@ import { Component, Inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { DRAGON_INFO_TOKEN } from '@app/constants/dragons';
+import { DragonsComponent } from '@app/views/dragons/dragons.component';
 import { IDragon } from 'interfaces/dragons';
 
 @Component({
@@ -11,8 +12,11 @@ import { IDragon } from 'interfaces/dragons';
   imports: [CommonModule, MatButtonModule, MatCardModule],
   templateUrl: './dragon-card.component.html'
 })
-export class DragonCardComponent {
-  constructor(@Inject(DRAGON_INFO_TOKEN) public dragonInfo: IDragon) { }
+
+export class DragonCardComponent extends DragonsComponent {
+  constructor(@Inject(DRAGON_INFO_TOKEN) public dragonInfo: IDragon) { super() }
+
+  goToDragonDetails(id: string) {
+    this.router.navigate(['/dragons', id]);
+  }
 }
-
-

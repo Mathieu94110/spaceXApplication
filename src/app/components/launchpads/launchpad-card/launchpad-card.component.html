@@ -1,5 +1,5 @@
 @if(launchPad){
-<mat-card class="search-card">
+<mat-card class="search-card" (click)="goToLaunchPadDetails(launchPad.id)">
   <mat-card-title>{{ launchPad.name }}</mat-card-title>
   <mat-card-content>
     <div class="search-card-info-line">

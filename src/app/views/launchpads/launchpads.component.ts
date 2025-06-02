@@ -1,12 +1,10 @@
-import { Component, Inject, inject, Optional, PLATFORM_ID } from '@angular/core';
+import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { LAUNCH_PADS_NAV_LINKS } from '@app/constants/navigation';
 import { NavigationLayoutComponent } from "../../layouts/navigation-layout/navigation-layout.component";
 import { LaunchPadsService } from 'services/launch-pads.service';
 import { ILaunch } from 'interfaces/launches';
-import { LAUNCH_PAD_INFO_TOKEN } from '@app/constants/launchPads';
-import { ILaunchPad } from 'interfaces/launch-pads';
 
 @Component({
   selector: 'app-launchpads',
@@ -23,7 +21,7 @@ export class LaunchPadsComponent {
 
   gridCols = 4;
 
-  constructor(@Optional() @Inject(LAUNCH_PAD_INFO_TOKEN) public launchPad: ILaunchPad | null) {
+  constructor() {
     if (isPlatformBrowser(this.platformId)) {
       this.updateGridCols();
       window.addEventListener('resize', () => this.updateGridCols());

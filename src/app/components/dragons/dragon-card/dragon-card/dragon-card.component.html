@@ -1,5 +1,5 @@
 @if(dragonInfo){
-<mat-card class="search-card">
+<mat-card class="search-card" (click)="goToDragonDetails(dragonInfo.id)">
   <mat-card-title>{{ dragonInfo.name }}</mat-card-title>
   <mat-card-content>
     <div class="search-card-info-line">

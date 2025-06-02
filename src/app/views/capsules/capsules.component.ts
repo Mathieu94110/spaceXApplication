@@ -15,7 +15,7 @@ import { CapsulesService } from 'services/capsules.service';
   styleUrl: './capsules.component.scss'
 })
 export class CapsulesComponent {
-  protected readonly router = inject(Router)
+  protected readonly router = inject(Router);
   protected readonly capsulesService = inject(CapsulesService);
   protected readonly capsulesLinks = CAPSULES_NAV_LINKS;
   protected readonly errorMsg = "Il semble qu'il y ait eu un problème lors du chargement de la liste";

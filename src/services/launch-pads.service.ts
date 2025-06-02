@@ -73,9 +73,8 @@ export class LaunchPadsService implements ISearchService<ILaunchPad> {
         if (!res.ok) {
           throw new Error('Erreur API launch pads');
         }
-        const response = await res.json();
-        console.log(response);
-        return response
+        return await res.json();
+
       } catch (error) {
         console.error('Erreur lors du parsing ou de la requête :', error);
         throw new Error('Impossible de charger les données');
