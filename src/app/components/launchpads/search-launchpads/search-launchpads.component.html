@@ -1,1 +1,2 @@
-<p>search-launchpads works!</p>
+<app-search-layout [searchService]="launchPadService" [cardComponent]="cardComponent" [dataToken]="token"
+  [placeholder]="'Rechercher une plateforme de lancement'" [fieldsToSearch]="['name', 'details']" />

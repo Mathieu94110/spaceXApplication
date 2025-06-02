@@ -1,6 +1,15 @@
-import { Injectable, computed, effect, signal, resource, runInInjectionContext, inject, Injector } from '@angular/core';
+import {
+  Injectable,
+  computed,
+  effect,
+  signal,
+  resource,
+  runInInjectionContext,
+  inject,
+  Injector,
+} from '@angular/core';
 import { EMPTY_RESOURCE } from '@app/constants';
-import { DEFAULT_DRAGON_LIMIT } from '@app/constants/launches';
+import { DEFAULT_CAPSULE_LIMIT } from '@app/constants/capsules';
 import { environment } from 'environments/environment';
 import { IRessource } from 'interfaces';
 import { ISearchService } from 'interfaces';
@@ -40,29 +49,39 @@ export class LaunchPadsService implements ISearchService<ILaunchPad> {
       const { queryText, page } = this.requestParams();
 
       if (!queryText) {
-        return EMPTY_RESOURCE;
+        return EMPTY_RESOURCE
       }
 
-      const res = await fetch(`${this.launchPadsUrl}/query`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          query: {
-            $or: [
-              { name: { $regex: queryText, $options: 'i' } },
-              { details: { $regex: queryText, $options: 'i' } }
-            ]
-          },
-          options: {
-            limit: DEFAULT_DRAGON_LIMIT,
-            page
-          }
-        })
-      });
+      try {
+        const res = await fetch(`${this.launchPadsUrl}/query`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            query: {
+              $or: [
+                { name: { $regex: queryText, $options: 'i' } },
+                { details: { $regex: queryText, $options: 'i' } }
+              ]
+            },
+            options: {
+              limit: DEFAULT_CAPSULE_LIMIT,
+              page
+            }
+          })
+        });
 
-      if (!res.ok) throw new Error('Erreur API launch pads');
-      return await res.json();
-    }
+        if (!res.ok) {
+          throw new Error('Erreur API launch pads');
+        }
+        const response = await res.json();
+        console.log(response);
+        return response
+      } catch (error) {
+        console.error('Erreur lors du parsing ou de la requête :', error);
+        throw new Error('Impossible de charger les données');
+      }
+    },
+    defaultValue: EMPTY_RESOURCE,
   });
 
   setSearchQuery(query: string): void {
@@ -70,7 +89,7 @@ export class LaunchPadsService implements ISearchService<ILaunchPad> {
     if (trimmed === '') {
       this.searchQuery.set('');
       this.page.set(1);
-      this.searchLaunchPadsResource.set(EMPTY_RESOURCE);
+      this.searchLaunchPadsResource.reload();
       return;
     }
 
@@ -89,7 +108,7 @@ export class LaunchPadsService implements ISearchService<ILaunchPad> {
       return this.launchPadsDetailsCache.get(id)!;
     }
 
-    const launchPadsRessource = runInInjectionContext(this.injector, () => {
+    const launchPadsResource = runInInjectionContext(this.injector, () => {
       return resource({
         loader: async (): Promise<ILaunchPad> => {
           const res = await fetch(`${this.launchPadsUrl}/${id}`);
@@ -101,8 +120,8 @@ export class LaunchPadsService implements ISearchService<ILaunchPad> {
       });
     });
 
-    this.launchPadsDetailsCache.set(id, launchPadsRessource);
-    return launchPadsRessource;
+    this.launchPadsDetailsCache.set(id, launchPadsResource);
+    return launchPadsResource;
   }
 
   nextPage() {
@@ -121,7 +140,7 @@ export class LaunchPadsService implements ISearchService<ILaunchPad> {
 
   get totalPages(): number {
     const result = this.searchLaunchPadsResource.value();
-    return result ? result.totalPages : 1;
+    return result?.totalPages > 0 ? result.totalPages : 1;
   }
 
   get currentPage(): number {

@@ -90,8 +90,8 @@ export const routes: Routes = [
   },
   {
     path: 'launchpads',
-    loadComponent: () => import('./views/dragons/dragons.component')
-      .then(m => m.DragonsComponent),
+    loadComponent: () => import('./views/launchpads/launchpads.component')
+      .then(m => m.LaunchPadsComponent),
     children: [
       {
         path: '',

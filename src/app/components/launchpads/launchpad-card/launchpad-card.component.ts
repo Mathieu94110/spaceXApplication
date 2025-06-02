@@ -1,11 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ILaunchPad } from 'interfaces/launch-pads';
+import { LAUNCH_PAD_INFO_TOKEN } from '@app/constants/launchPads';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
-  selector: 'app-launchpad-card',
-  imports: [],
+  selector: 'app-launch-pad-card',
+  standalone: true,
+  imports: [CommonModule, MatCardModule],
   templateUrl: './launchpad-card.component.html',
   styleUrl: './launchpad-card.component.scss'
 })
 export class LaunchPadCardComponent {
-
+  constructor(@Inject(LAUNCH_PAD_INFO_TOKEN) public launchPad: ILaunchPad) { }
 }

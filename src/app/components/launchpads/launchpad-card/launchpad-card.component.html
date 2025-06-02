@@ -1,1 +1,13 @@
-<p>launchpads-card works!</p>
+@if(launchPad){
+<mat-card class="search-card">
+  <mat-card-title>{{ launchPad.name }}</mat-card-title>
+  <mat-card-content>
+    <div class="search-card-info-line">
+      <strong>Type:</strong> {{ launchPad.full_name }}
+    </div>
+    <div class="search-card-info-line"><strong>Locality:</strong> {{ launchPad.locality }}</div>
+    <div class="search-card-info-line"><strong>Region:</strong> {{ launchPad.region }}</div>
+    <div class="search-card-info-line"><strong>Status:</strong> {{ launchPad.status }}</div>
+  </mat-card-content>
+</mat-card>
+}

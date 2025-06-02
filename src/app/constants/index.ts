@@ -5,7 +5,7 @@ export const EMPTY_RESOURCE = {
   totalDocs: 0,
   offset: 0,
   limit: DEFAULT_CAPSULE_LIMIT,
-  totalPages: 0,
+  totalPages: 1,
   page: 1,
   pagingCounter: 1,
   hasPrevPage: false,

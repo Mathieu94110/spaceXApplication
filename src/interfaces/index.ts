@@ -25,17 +25,6 @@ export interface IRessourceRef<T> {
   [key: string]: any;
 }
 
-/* export interface ISearchService<T> {
-  resource: Signal<IRessource<T>>;
-  setSearchQuery(query: string): void;
-  nextPage(): void;
-  prevPage(): void;
-  reset(): void;
-  currentSearchQuery(): string;
-  currentPage: number;
-  totalPages: number;
-} */
-
 export interface ISearchService<T> {
   resource: {
     value: () => IRessource<T> | null;
