@@ -6,6 +6,7 @@ import { CardLayoutComponent } from '@app/layouts/card-layout/card-layout.compon
 import { CapsulesComponent } from '@app/views/capsules/capsules.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { getStatusClass } from '@app/utils/cards.utils';
 
 @Component({
   selector: 'app-all-capsules',
@@ -17,6 +18,7 @@ export class AllCapsulesComponent extends CapsulesComponent {
   capsules = computed(() => this.capsulesService.allCapsulesResource.value() || []);
   capsulesIsLoading = computed(() => this.capsulesService.allCapsulesResource.isLoading());
   capsulesError = computed(() => this.capsulesService.allCapsulesResource.error());
+  getCapsuleStatusClass = getStatusClass;
 
   effect() {
     this.updateGridCols();
@@ -25,7 +27,7 @@ export class AllCapsulesComponent extends CapsulesComponent {
   goToCapuleDetails(id: string) {
     this.router.navigate(['/capsules', id]);
   }
-  handleRocketClick(launch: string) {
-    console.log('Rocket clicked', launch);
+  goToLaunchDetails(id: string) {
+    this.router.navigate(['/launches', id]);
   }
 }

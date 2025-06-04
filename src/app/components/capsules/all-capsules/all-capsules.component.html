@@ -20,14 +20,14 @@
               <span class="all-capsules-card-stats"> {{capsule.land_landings}} land landings</span>
               <div class="all-capsules-card-stats-rocket-launch">
                 <span class="all-capsules-card-stats-rocket-launch-text">Launch:</span>
-                <mat-icon (click)="handleRocketClick(capsule.launches[0])">rocket_launch</mat-icon>
+                <mat-icon (click)="goToLaunchDetails(capsule.launches[0])">rocket_launch</mat-icon>
               </div>
             </div>
             <span card-description>
               {{ capsule.last_update || 'Aucune description disponible' | slice: 0:100 }}...
             </span>
-            <span card-upcoming [ngClass]="getCapsuleClass(capsule.status)">
-              {{ capsule.status }}
+            <span card-upcoming [ngClass]="getCapsuleStatusClass(capsule.status)">
+              {{ capsule.status | titlecase }}
             </span>
             <span card-action>
               <button card-upcoming mat-raised-button (click)="goToCapuleDetails(capsule.id)">
