@@ -61,7 +61,6 @@ mat-card-content {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   font-size: 14px;
   color: #444;
 }
@@ -81,6 +80,7 @@ mat-card-content p {
 }
 
 mat-card-actions {
+  display: inline-flex;
   padding: 12px;
   text-align: center;
   background-color: #f1f1f1;

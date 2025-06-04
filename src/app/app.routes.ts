@@ -111,6 +111,28 @@ export const routes: Routes = [
     ]
   },
   {
+    path: 'crew',
+    loadComponent: () => import('./views/crew/crew.component')
+      .then(m => m.CrewComponent),
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./components/crew/all-crews/all-crews.component')
+          .then(m => m.AllCrewsComponent)
+      },
+      {
+        path: 'search',
+        loadComponent: () => import('./components/crew/search-crews/search-crews.component')
+          .then(m => m.SearchCrewsComponent)
+      },
+      {
+        path: ':id',
+        loadComponent: () => import('./components/crew/crew-details/crew-details.component')
+          .then(m => m.CrewDetailsComponent)
+      }
+    ]
+  },
+  {
     path: '',
     redirectTo: '',
     pathMatch: 'full'

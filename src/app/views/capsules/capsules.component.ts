@@ -1,10 +1,9 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { STATUS_CLASS_MAP } from '@app/constants/capsules';
+import { STATUS_CLASS_MAP } from '@app/constants';
 import { CAPSULES_NAV_LINKS } from '@app/constants/navigation';
 import { NavigationLayoutComponent } from '@app/layouts/navigation-layout/navigation-layout.component';
-import { capsuleStatus } from 'interfaces/capsules';
 import { CapsulesService } from 'services/capsules.service';
 
 @Component({
@@ -41,9 +40,5 @@ export class CapsulesComponent {
     } else {
       this.gridCols = 1;
     }
-  }
-
-  getCapsuleClass(status: capsuleStatus) {
-    return STATUS_CLASS_MAP[status] || 'color-black';
   }
 }

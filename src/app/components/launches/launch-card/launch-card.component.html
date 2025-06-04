@@ -1,6 +1,6 @@
 @if(launchInfo){
 <mat-card class="search-card" (click)="goToLaunchDetails(launchInfo.id)">
-  <mat-card-title>{{ launchInfo.name }}</mat-card-title>
+  <mat-card-title>{{ launchInfo.name | slice: 0:30 }}</mat-card-title>
   <mat-card-content>
     <div class="search-card-info-line"><strong>Date:</strong> {{launchInfo.date_utc | date:'dd/MM/yyyy HH:mm:ss'}}</div>
     <div class="search-card-info-line"><strong>Capsules:</strong> {{ launchInfo.capsules }}</div>

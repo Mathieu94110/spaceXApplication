@@ -1,8 +1,8 @@
-export type capsuleStatus = 'retired' | 'unknown' | 'destroyed' | 'active'
+import { cardStatus } from "interfaces";
 
 export interface ICapsule {
   serial: string,
-  status: capsuleStatus,
+  status: cardStatus,
   type: string,
   dragon: string,
   reuse_count: number,

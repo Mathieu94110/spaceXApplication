@@ -5,6 +5,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CardLayoutComponent } from '@app/layouts/card-layout/card-layout.component';
+import { getStatusClass } from '@app/utils/cards.utils';
 import { LaunchPadsComponent } from '@app/views/launchpads/launchpads.component';
 
 @Component({
@@ -19,6 +20,7 @@ export class AllLaunchPadsComponent extends LaunchPadsComponent {
   launchPads = computed(() => this.launchPadsService.allLaunchPadsResource.value() || []);
   launchPadsIsLoading = computed(() => this.launchPadsService.allLaunchPadsResource.isLoading());
   launchPadsError = computed(() => this.launchPadsService.allLaunchPadsResource.error());
+  getLaunchPadStatusClass = getStatusClass;
 
   effect() {
     this.updateGridCols();

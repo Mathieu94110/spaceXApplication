@@ -12,7 +12,9 @@
     <img [src]="dragon.flickr_images?.[0] || 'assets/icons/dragon.jpg'" alt="{{ dragon.name }}" class="dragon-image" />
 
     <mat-card-content>
-      <p><strong>Status:</strong> {{ dragon.active ? 'Active' : 'Inactive' }}</p>
+      <p><strong>Status:</strong> <span [ngClass]="dragon.active ? 'color-success':'color-neutral'">{{ dragon.active ?
+          'Active' :
+          'Inactive' }}</span></p>
       <p><strong>Crew Capacity:</strong> {{ dragon.crew_capacity }}</p>
       <p><strong>Orbit Duration (years):</strong> {{ dragon.orbit_duration_yr }}</p>
       <p><strong>Dry Mass:</strong> {{ dragon.dry_mass_kg }} kg / {{ dragon.dry_mass_lb }} lb</p>

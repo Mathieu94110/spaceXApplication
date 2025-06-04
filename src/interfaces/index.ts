@@ -42,3 +42,4 @@ export interface ISearchService<T> {
 }
 
 export type SearchableEntity = ICapsule | ILaunch | IDragon;
+export type cardStatus = 'retired' | 'unknown' | 'destroyed' | 'active' | 'inactive' | 'lost' | 'under construction'

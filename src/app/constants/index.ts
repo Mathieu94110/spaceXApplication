@@ -1,3 +1,4 @@
+import { cardStatus } from "interfaces";
 import { DEFAULT_CAPSULE_LIMIT } from "./capsules";
 
 export const EMPTY_RESOURCE = {
@@ -12,4 +13,14 @@ export const EMPTY_RESOURCE = {
   hasNextPage: false,
   prevPage: null,
   nextPage: null
+};
+
+export const STATUS_CLASS_MAP: Record<cardStatus, string> = {
+  retired: 'color-blue',
+  unknown: 'color-neutral',
+  destroyed: 'color-error',
+  active: 'color-success',
+  inactive: 'color-blue-light',
+  lost: 'color-black',
+  'under construction': 'color-beige'
 };

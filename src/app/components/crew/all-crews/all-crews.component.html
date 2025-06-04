@@ -1,0 +1,43 @@
+<ng-container>
+  @if (crewsAreLoading()) {
+  <div class="spinner-container">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+  } @else if (crews()) {
+  <div class="all-crews">
+    <mat-grid-list [cols]="gridCols" rowHeight="458px" [gutterSize]="'24px'">
+      @for (member of crews()!; track member.id) {
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <app-card-layout class="all-crews-card">
+          <span card-title>{{ member.name }}</span>
+          <span card-subtitle>{{ member.agency }}</span>
+          <span card-img>
+            <img mat-card-image [src]="member.image || 'assets/icons/spacex-default-img.jpg'" alt="{{ member.name }}" />
+          </span>
+          <span card-description>
+            Agency:<span card-subtitle> {{ member.agency }}</span>
+          </span>
+          <span card-upcoming [ngClass]="getCrewStatusClass(member.status)">
+            {{ member.status| titlecase }}
+          </span>
+          <div card-action>
+            <div class="button-group">
+              <button mat-raised-button (click)="goToCrewDetails(member.id)">
+                Voir le détail
+              </button>
+              <button mat-raised-button (click)="openWikipedia(member.wikipedia)">
+                Voir sur Wikipedia
+              </button>
+            </div>
+          </div>
+        </app-card-layout>
+      </mat-grid-tile>
+      }
+    </mat-grid-list>
+  </div>
+  } @else if (crewsError()) {
+  <div class="all-crews-full-screen">
+    <h2>{{ errorMsg }}</h2>
+  </div>
+  }
+</ng-container>

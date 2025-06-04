@@ -20,7 +20,7 @@
             Coordinates: {{ pad.latitude ?? 'N/A' }}, {{ pad.longitude ?? 'N/A' }}<br />
             Landings: {{ pad.landing_successes }}/{{ pad.landing_attempts }}
           </span>
-          <span card-upcoming [ngClass]="pad.status === 'active' ? 'success-color' : 'neutral-color'">
+          <span card-upcoming [ngClass]="getLaunchPadStatusClass(pad.status)">
             {{ pad.status | titlecase }}
           </span>
           <span card-action>

@@ -17,7 +17,7 @@
           <span card-description> {{ dragon.description || 'Aucune description disponible' | slice: 0:100}}...
           </span>
           <span card-upcoming [ngClass]="dragon.active ? 'success-color' : 'neutral-color'">
-            {{ dragon.active ? 'À venir' : 'Terminé' }}
+            {{ dragon.active ? 'Upcoming' : 'Completed' }}
           </span>
           <span card-action>
             <button card-upcoming mat-raised-button (click)="goToDragonDetails(dragon.id)">

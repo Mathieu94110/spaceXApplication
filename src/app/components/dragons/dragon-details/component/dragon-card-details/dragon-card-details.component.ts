@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import { getStatusClass } from '@app/utils/cards.utils';
 import { IDragon } from 'interfaces/dragons';
 
 @Component({
@@ -14,4 +15,5 @@ import { IDragon } from 'interfaces/dragons';
 })
 export class DragonCardDetailsComponent {
   readonly dragonInfo = input.required<IDragon>()
+  getDragonCardStatus = getStatusClass;
 }

@@ -14,8 +14,8 @@
             alt="{{ launch.name }}" /></span>
         <span card-description> {{ launch.details || 'Aucune description disponible' | slice: 0:100 }}...
         </span>
-        <span card-upcoming [ngClass]="launch.upcoming ? 'neutral-color' : 'success-color'">
-          {{ launch.upcoming ? 'À venir' : 'Terminé' }}
+        <span card-upcoming [ngClass]="launch.upcoming ? 'color-neutral' : 'color-success'">
+          {{ (launch.upcoming ? 'upcoming' : 'completed') | titlecase }}
         </span>
         <span>
         </span>

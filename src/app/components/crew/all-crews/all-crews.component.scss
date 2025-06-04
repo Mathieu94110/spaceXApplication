@@ -1,0 +1,16 @@
+.button-group {
+  display: block;
+  gap: 12px;
+}
+
+
+button {
+  flex: 1 1 auto;
+}
+
+
+@media (min-width: 600px) {
+  .button-group {
+    display: flex;
+  }
+}

@@ -1,0 +1,101 @@
+@use 'variables' as *;
+
+.all-crews {
+  max-width: 1400px;
+  margin: 100px auto 50px auto;
+  padding: 0 16px;
+  height: calc(100vh - #{ $navbar-height * 1.5 });
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-crews {
+  max-width: 1400px;
+  margin: 100px auto 50px auto;
+  padding: 0 16px;
+  height: calc(100vh - #{ $navbar-height * 1.5 });
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+mat-grid-list {
+  width: 100%;
+  margin: 0 auto;
+}
+
+mat-grid-tile {
+  display: flex !important;
+  flex-direction: column;
+  padding: 0 !important;
+}
+
+h2 {
+  text-align: center;
+  color: $color-error;
+}
+
+.all-crews-card {
+  width: 100%;
+  height: 100%;
+}
+
+.all-crews-full-screen {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.crews-launch-wrapper {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  padding: 0 16px;
+}
+
+.crews-unique-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.all-crews-card-stats-container {
+  height: 100%;
+  width: 100%;
+}
+
+.all-crews-card-stats {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px;
+}
+
+.all-crews-card-stats-rocket-launch {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  transition: transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.all-crews-card-stats-rocket-launch:hover mat-icon {
+  transform: scale(1.2) rotate(10deg);
+  color: $color-error;
+  cursor: pointer;
+}
+
+.all-crews-card-stats-rocket-launch-text {
+  margin-right: 20px;
+}
+
+@media screen and (min-width: 600px) {
+  .crews-unique-card {
+    min-width: 360px;
+  }
+}
