@@ -38,3 +38,4 @@ export class CapsuleDetailsComponent {
   });
   capsuleDetails = computed(() => this.capsuleResource.value() as ICapsule | null);
 }
+

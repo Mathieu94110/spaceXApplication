@@ -3,7 +3,7 @@
     <a routerLink="/" class="navigation-layout-logo" aria-label="SpaceX Homepage">
       <img alt="SpaceX logo" src="assets/icons/spaceX-logo.png" class="navigation-layout-logo-img" />
     </a>
-    <div class="navigation-layout-navigation">
+    <nav class="navigation-layout-navigation">
       <ul class="navigation-layout-nav-links-static">
         @for(item of navLinks(); track $index) {
         <li (mouseenter)="setHovered($index)" (mouseleave)="setHovered(null)" routerLinkActive="active-item">
@@ -16,7 +16,7 @@
         </li>
         }
       </ul>
-    </div>
+    </nav>
   </div>
   <div class="navigation-layout-menu-close" [ngClass]="{ 'open': isMenuOpen }" (click)="toggleMenu()"></div>
   <div class="navigation-layout-menu" [ngClass]="{ 'open': isMenuOpen }">

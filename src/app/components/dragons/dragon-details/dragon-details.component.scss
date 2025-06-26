@@ -10,19 +10,3 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
-
-.loading-container,
-.error-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  text-align: center;
-  margin-top: 4rem;
-
-  p {
-    font-size: 1.2rem;
-    color: $color-error;
-  }
-}
