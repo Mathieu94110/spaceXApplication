@@ -1,1 +1,16 @@
-<p>crew-details works!</p>
+@let crew = crewDetails();
+@if (isLoading()) {
+<div class="loading-container">
+  <mat-spinner diameter="50"></mat-spinner>
+</div>
+} @else {
+@if (errorMessage()) {
+<div class="error-message">
+  <p>Erreur : {{ errorMessage() }}</p>
+</div>
+} @else if (crew) {
+<div class="details-container">
+  <app-crew-card-details [crewInfo]="crew" />
+</div>
+}
+}

@@ -77,23 +77,6 @@ h2 {
   padding: 10px;
 }
 
-.all-crews-card-stats-rocket-launch {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  transition: transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.all-crews-card-stats-rocket-launch:hover mat-icon {
-  transform: scale(1.2) rotate(10deg);
-  color: $color-error;
-  cursor: pointer;
-}
-
-.all-crews-card-stats-rocket-launch-text {
-  margin-right: 20px;
-}
-
 @media screen and (min-width: 600px) {
   .crews-unique-card {
     min-width: 360px;

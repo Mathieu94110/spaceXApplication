@@ -1,0 +1,33 @@
+@let crewDetails = crewInfo();
+
+<div class="crew-details">
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="crew-avatar"></div>
+      <mat-card-title>{{ crewDetails.name }}</mat-card-title>
+      <mat-card-subtitle>{{ crewDetails.agency }}</mat-card-subtitle>
+    </mat-card-header>
+    <img [src]="crewDetails.image" alt="{{ crewDetails.name }}" class="crew-image" />
+    <mat-card-content>
+      <p><strong>Status:</strong> <span [ngClass]="getCrewStatusClass(crewDetails.status)"> {{
+          crewDetails.status | titlecase
+          }}</span></p>
+      <ul class=" rocket-launch">
+        <span class="rocket-launch-text"><strong>Launches:</strong> </span>
+        @for (launche of crewDetails.launches!; track $index) {
+        <li>
+          <mat-icon (click)="goToLaunchDetails(launche)">rocket_launch</mat-icon>
+        </li>
+        }
+      </ul>
+    </mat-card-content>
+    <mat-card-actions>
+      <a [href]="crewDetails.wikipedia" target="_blank" rel="noopener noreferrer">
+        <button mat-button color="primary">
+          <mat-icon>language</mat-icon> Wikipedia
+        </button>
+      </a>
+      <button mat-button routerLink="/crew" class="crew-details-btn">Retour à la liste</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
