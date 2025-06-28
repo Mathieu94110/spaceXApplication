@@ -1,0 +1,9 @@
+@if(crewInfo){
+<mat-card class="search-card" (click)="goToCrewDetails(crewInfo.id)">
+  <mat-card-title>{{ crewInfo.name }}</mat-card-title>
+  <mat-card-content>
+    <div class="search-card-info-line"><strong>Status:</strong> {{ crewInfo.status }}</div>
+    <div class="search-card-info-line"><strong>Agency:</strong> {{ crewInfo.agency }}</div>
+  </mat-card-content>
+</mat-card>
+}

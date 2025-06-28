@@ -122,7 +122,7 @@ export const routes: Routes = [
       },
       {
         path: 'search',
-        loadComponent: () => import('./components/crew/search-crews/search-crews.component')
+        loadComponent: () => import('./components/crew/search-crew/search-crew.component')
           .then(m => m.SearchCrewsComponent)
       },
       {
