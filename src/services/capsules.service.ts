@@ -1,6 +1,6 @@
 import { Injectable, computed, effect, signal, resource, runInInjectionContext, inject, Injector } from '@angular/core';
 import { EMPTY_RESOURCE } from '@app/constants';
-import { DEFAULT_CAPSULE_LIMIT } from '@app/constants/capsules';
+import { DEFAULT_RESSOURCE_LIMIT } from '@app/constants';
 import { environment } from 'environments/environment';
 import { ICapsule } from 'interfaces/capsules';
 import { IRessource, ISearchService } from 'interfaces';
@@ -19,6 +19,10 @@ export class CapsulesService implements ISearchService<ICapsule> {
       const page = this.page();
       if (queryText.trim() !== '' || page !== 1) {
         this.searchCapsuleResource.reload();
+      }
+      // Prevents loading all resources when the page first loads
+      else {
+        this.searchCapsuleResource.set(EMPTY_RESOURCE);
       }
     });
   }
@@ -64,11 +68,6 @@ export class CapsulesService implements ISearchService<ICapsule> {
     resource({
       loader: async (): Promise<IRessource<ICapsule>> => {
         const { queryText, page } = this.requestParams();
-
-        if (!queryText) {
-          return EMPTY_RESOURCE;
-        }
-
         const res = await fetch(`${this.capsulesUrl}/query`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -80,7 +79,7 @@ export class CapsulesService implements ISearchService<ICapsule> {
               ]
             },
             options: {
-              limit: DEFAULT_CAPSULE_LIMIT,
+              limit: DEFAULT_RESSOURCE_LIMIT,
               page,
             }
           })

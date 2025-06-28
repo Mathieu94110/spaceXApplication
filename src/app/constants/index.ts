@@ -1,11 +1,12 @@
 import { cardStatus } from "interfaces";
-import { DEFAULT_CAPSULE_LIMIT } from "./capsules";
+
+export const DEFAULT_RESSOURCE_LIMIT = 8;
 
 export const EMPTY_RESOURCE = {
   docs: [],
   totalDocs: 0,
   offset: 0,
-  limit: DEFAULT_CAPSULE_LIMIT,
+  limit: DEFAULT_RESSOURCE_LIMIT,
   totalPages: 1,
   page: 1,
   pagingCounter: 1,

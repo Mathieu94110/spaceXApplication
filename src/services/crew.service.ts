@@ -1,9 +1,9 @@
 import { Injectable, computed, effect, signal, resource, runInInjectionContext, inject, Injector } from '@angular/core';
 import { EMPTY_RESOURCE } from '@app/constants';
-import { DEFAULT_DRAGON_LIMIT } from '@app/constants/dragons';
 import { environment } from 'environments/environment';
 import { IRessource, ISearchService } from 'interfaces';
 import { ICrew } from 'interfaces/crew';
+import { DEFAULT_RESSOURCE_LIMIT } from '@app/constants';
 
 @Injectable({ providedIn: 'root' })
 export class CrewService implements ISearchService<ICrew> {
@@ -16,6 +16,10 @@ export class CrewService implements ISearchService<ICrew> {
 
       if (queryText.trim() !== '' || page !== 1) {
         this.searchCrewResource.reload();
+      }
+      // Prevents loading all resources when the page first loads
+      else {
+        this.searchCrewResource.set(EMPTY_RESOURCE);
       }
     });
   }
@@ -71,7 +75,7 @@ export class CrewService implements ISearchService<ICrew> {
             }
             : {},
           options: {
-            limit: DEFAULT_DRAGON_LIMIT,
+            limit: DEFAULT_RESSOURCE_LIMIT,
             page
           }
         })

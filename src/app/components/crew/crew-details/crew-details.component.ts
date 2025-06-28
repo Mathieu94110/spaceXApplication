@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CrewService } from 'services/crew.service';
 import { ICrew } from 'interfaces/crew';
-import { CrewCardDetailsComponent } from './crew-card-details/crew-card-details.component';
+import { CrewCardDetailsComponent } from './components/crew-card-details/crew-card-details.component';
 
 @Component({
   selector: 'app-crew-details',

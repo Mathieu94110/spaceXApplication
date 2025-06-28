@@ -1,6 +1,6 @@
 import { Injectable, computed, effect, signal, resource, runInInjectionContext, inject, Injector } from '@angular/core';
 import { EMPTY_RESOURCE } from '@app/constants';
-import { DEFAULT_DRAGON_LIMIT } from '@app/constants/launches';
+import { DEFAULT_RESSOURCE_LIMIT } from '@app/constants';
 import { environment } from 'environments/environment';
 import { IRessource } from 'interfaces';
 import { ISearchService } from 'interfaces';
@@ -17,6 +17,10 @@ export class LaunchesService implements ISearchService<ILaunch> {
 
       if (queryText.trim() !== '' || page !== 1) {
         this.searchLaunchResource.reload();
+      }
+      // Prevents loading all resources when the page first loads
+      else {
+        this.searchLaunchResource.set(EMPTY_RESOURCE);
       }
     });
   }
@@ -60,10 +64,6 @@ export class LaunchesService implements ISearchService<ILaunch> {
     loader: async (): Promise<IRessource<ILaunch>> => {
       const { queryText, page } = this.requestParams();
 
-      if (!queryText) {
-        return EMPTY_RESOURCE;
-      }
-
       const res = await fetch(`${this.launchesUrl}/query`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -75,7 +75,7 @@ export class LaunchesService implements ISearchService<ILaunch> {
             ]
           },
           options: {
-            limit: DEFAULT_DRAGON_LIMIT,
+            limit: DEFAULT_RESSOURCE_LIMIT,
             page
           }
         })

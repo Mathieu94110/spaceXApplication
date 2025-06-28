@@ -9,7 +9,7 @@ import {
   Injector,
 } from '@angular/core';
 import { EMPTY_RESOURCE } from '@app/constants';
-import { DEFAULT_CAPSULE_LIMIT } from '@app/constants/capsules';
+import { DEFAULT_RESSOURCE_LIMIT } from '@app/constants';
 import { environment } from 'environments/environment';
 import { IRessource } from 'interfaces';
 import { ISearchService } from 'interfaces';
@@ -26,6 +26,10 @@ export class LaunchPadsService implements ISearchService<ILaunchPad> {
 
       if (queryText.trim() !== '' || page !== 1) {
         this.searchLaunchPadsResource.reload();
+      }
+      // Prevents loading all resources when the page first loads
+      else {
+        this.searchLaunchPadsResource.set(EMPTY_RESOURCE);
       }
     });
   }
@@ -48,10 +52,6 @@ export class LaunchPadsService implements ISearchService<ILaunchPad> {
     loader: async (): Promise<IRessource<ILaunchPad>> => {
       const { queryText, page } = this.requestParams();
 
-      if (!queryText) {
-        return EMPTY_RESOURCE
-      }
-
       try {
         const res = await fetch(`${this.launchPadsUrl}/query`, {
           method: 'POST',
@@ -64,7 +64,7 @@ export class LaunchPadsService implements ISearchService<ILaunchPad> {
               ]
             },
             options: {
-              limit: DEFAULT_CAPSULE_LIMIT,
+              limit: DEFAULT_RESSOURCE_LIMIT,
               page
             }
           })
