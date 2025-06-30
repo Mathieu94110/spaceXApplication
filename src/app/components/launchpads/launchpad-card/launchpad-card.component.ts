@@ -16,8 +16,4 @@ export class LaunchPadCardComponent extends LaunchPadsComponent {
   constructor(@Inject(LAUNCH_PAD_INFO_TOKEN) public launchPad: ILaunchPad) {
     super();
   }
-
-  goToLaunchPadDetails(id: string) {
-    this.router.navigate(['/launchpads', id]);
-  }
 }

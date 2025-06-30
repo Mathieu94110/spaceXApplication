@@ -4,12 +4,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { LaunchesComponent } from '@app/views/launches/launches.component';
 import { CardLayoutComponent } from '@app/layouts/card-layout/card-layout.component';
-import { MatButton } from '@angular/material/button';
 import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-upcoming-launches',
-  imports: [CommonModule, MatProgressSpinnerModule, MatGridListModule, CardLayoutComponent, MatButton, MatTooltip],
+  imports: [CommonModule, MatProgressSpinnerModule, MatGridListModule, CardLayoutComponent, MatTooltip],
   templateUrl: './upcoming-launches.component.html',
   styleUrls: ['./upcoming-launches.component.scss', '../../../views/launches/launches.component.scss']
 })

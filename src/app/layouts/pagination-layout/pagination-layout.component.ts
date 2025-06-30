@@ -1,10 +1,10 @@
 import { Component, input, output } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
+import { ButtonComponent } from '@app/shared/button/button.component';
 
 @Component({
   selector: 'app-pagination-layout',
   standalone: true,
-  imports: [MatButtonModule],
+  imports: [ButtonComponent],
   templateUrl: './pagination-layout.component.html',
   styleUrl: './pagination-layout.component.scss'
 })

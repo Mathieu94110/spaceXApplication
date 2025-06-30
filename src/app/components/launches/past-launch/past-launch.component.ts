@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed } from '@angular/core';
-import { MatButton } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltip } from '@angular/material/tooltip';
@@ -9,7 +8,7 @@ import { LaunchesComponent } from '@app/views/launches/launches.component';
 
 @Component({
   selector: 'app-past-launch',
-  imports: [CommonModule, MatProgressSpinnerModule, MatGridListModule, CardLayoutComponent, MatButton, MatTooltip],
+  imports: [CommonModule, MatProgressSpinnerModule, MatGridListModule, CardLayoutComponent, MatTooltip],
   templateUrl: './past-launch.component.html',
   styleUrls: ['./past-launch.component.scss', '../../../views/launches/launches.component.scss']
 })

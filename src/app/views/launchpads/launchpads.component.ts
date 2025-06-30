@@ -43,4 +43,10 @@ export class LaunchPadsComponent {
   goToArticle(launch: ILaunch) {
     if (launch.links?.article) window.open(launch.links.article, '_blank')
   }
+  goBack() {
+    this.router.navigate(['launchpads'])
+  }
+  goToLaunchPadDetails(id: string) {
+    this.router.navigate(['/launchpads', id]);
+  }
 }

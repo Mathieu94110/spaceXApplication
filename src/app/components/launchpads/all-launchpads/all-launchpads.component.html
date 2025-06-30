@@ -24,9 +24,10 @@
             {{ pad.status | titlecase }}
           </span>
           <span card-action>
-            <button mat-raised-button color="primary" (click)="goToLaunchPadDetails(pad.id)">
+            <app-button color="primary" size="large" variant="outline" icon="search" iconPosition="start"
+              ariaLabel="voir les détails" (click)="goToLaunchPadDetails(pad.id)">
               Voir les détails
-            </button>
+            </app-button>
           </span>
         </app-card-layout>
       </mat-grid-tile>

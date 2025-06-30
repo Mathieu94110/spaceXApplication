@@ -14,7 +14,10 @@
       ],
       "@layout/*": [
         "layout/*"
-      ]
+      ],
+      "@shared/*": [
+        "shared/*"
+      ],
     },
     "strict": true,
     "noImplicitOverride": true,

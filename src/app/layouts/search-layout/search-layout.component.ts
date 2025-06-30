@@ -3,13 +3,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaginationLayoutComponent } from '../pagination-layout/pagination-layout.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ISearchService } from 'interfaces';
-import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CommonModule, NgComponentOutlet } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-search-layout',
@@ -24,11 +24,11 @@ import { CommonModule, NgComponentOutlet } from '@angular/common';
     MatToolbarModule,
     MatIconModule,
     MatCardModule,
-    MatButtonModule,
     MatInputModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule,
-    PaginationLayoutComponent
+    PaginationLayoutComponent,
+    MatButtonModule
   ],
 })
 export class SearchLayoutComponent<T> {

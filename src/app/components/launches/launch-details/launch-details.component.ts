@@ -2,8 +2,6 @@ import { Component, signal, computed, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { LaunchesService } from 'services/launches.service';
 import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ILaunch } from 'interfaces/launches';
 import { LaunchCardDetailsComponent } from './components/launch-card-details/launch-card-details.component';

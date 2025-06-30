@@ -1,9 +1,15 @@
 @if(hasData()){
 <div class="pagination">
   @if(isPrevButtonVisible()){
-  <button mat-raised-button (click)="prevPage()">Précédent</button>
+  <app-button card-upcoming color="primary" size="large" variant="outline" icon="arrow_back" iconPosition="start"
+    ariaLabel="précédent" (click)="prevPage()">
+    Précédent
+  </app-button>
   }@if(isNextButtonVisible()){
-  <button mat-raised-button (click)="nextPage()">Suivant</button>
+  <app-button card-upcoming color="primary" size="large" variant="outline" icon="arrow_forward" iconPosition="end"
+    ariaLabel="suivant" (click)="nextPage()">
+    Suivant
+  </app-button>
   }
 </div>
 }

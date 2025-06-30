@@ -43,3 +43,7 @@ export interface ISearchService<T> {
 
 export type SearchableEntity = ICapsule | ILaunch | IDragon;
 export type cardStatus = 'retired' | 'unknown' | 'destroyed' | 'active' | 'inactive' | 'lost' | 'under construction'
+export type buttonColor = 'primary' | 'accent' | 'warn' | 'default';
+export type buttonSize = 'small' | 'medium' | 'large';
+export type buttonVariant = 'flat' | 'outline' | 'default';
+export type iconPosition = 'start' | 'end' | 'center';

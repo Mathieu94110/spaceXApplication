@@ -40,7 +40,15 @@ export class LaunchesComponent {
       this.gridCols = 1;
     }
   }
+
+  goToLaunchDetails(id: string) {
+    this.router.navigate(['/launches', id]);
+  }
+
   goToArticle(launch: ILaunch) {
     if (launch.links?.article) window.open(launch.links.article, '_blank')
+  }
+  goBack() {
+    this.router.navigate(['launches'])
   }
 }

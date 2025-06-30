@@ -3,7 +3,6 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CapsulesService } from 'services/capsules.service';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ICapsule } from 'interfaces/capsules';
 import { CapsuleCardDetailsComponent } from "./components/capsule-card-details/capsule-card-details.component";
@@ -17,7 +16,6 @@ import { CapsuleCardDetailsComponent } from "./components/capsule-card-details/c
     CommonModule,
     MatCardModule,
     MatProgressSpinnerModule,
-    MatButtonModule,
     RouterModule,
     CapsuleCardDetailsComponent
   ],

@@ -30,9 +30,11 @@
               {{ capsule.status | titlecase }}
             </span>
             <span card-action>
-              <button card-upcoming mat-raised-button (click)="goToCapuleDetails(capsule.id)">
+              <app-button card-upcoming color="primary" size="large" variant="outline" icon="search" iconPosition="end"
+                [disabled]="false" ariaLabel="Voir le détail" [active]="capsule.status"
+                (click)="goToCapsuleDetails(capsule.id)">
                 Voir le détail
-              </button>
+              </app-button>
             </span>
           </app-card-layout>
         </mat-grid-tile>

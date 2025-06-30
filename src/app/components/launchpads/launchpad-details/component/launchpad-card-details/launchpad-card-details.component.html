@@ -41,7 +41,10 @@
     </mat-card-content>
 
     <mat-card-actions>
-      <button mat-button routerLink="/launchpads" class="go-back-btn">Retour à la liste</button>
+      <app-button color="primary" size="large" variant="outline" icon="arrow_back" iconPosition="start"
+        ariaLabel="retour à la liste" (click)="goBack()">
+        Retour à la liste
+      </app-button>
     </mat-card-actions>
   </mat-card>
 </div>

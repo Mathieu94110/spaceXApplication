@@ -41,4 +41,11 @@ export class CapsulesComponent {
       this.gridCols = 1;
     }
   }
+
+  goToCapsuleDetails(id: string) {
+    this.router.navigate(['/capsules', id]);
+  }
+  goToLaunchDetails(id: string) {
+    this.router.navigate(['/launches', id]);
+  }
 }

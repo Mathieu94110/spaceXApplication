@@ -5,12 +5,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CardLayoutComponent } from '@app/layouts/card-layout/card-layout.component';
 import { CapsulesComponent } from '@app/views/capsules/capsules.component';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
 import { getStatusClass } from '@app/utils/cards.utils';
+import { ButtonComponent } from '@app/shared/button/button.component';
 
 @Component({
   selector: 'app-all-capsules',
-  imports: [CommonModule, MatProgressSpinnerModule, MatButtonModule, MatGridListModule, CardLayoutComponent, MatIconModule],
+  imports: [CommonModule, MatProgressSpinnerModule, MatGridListModule, CardLayoutComponent, MatIconModule, ButtonComponent],
   templateUrl: './all-capsules.component.html',
   styleUrls: ['./all-capsules.component.scss', '../../../views/capsules/capsules.component.scss']
 })
@@ -23,11 +23,5 @@ export class AllCapsulesComponent extends CapsulesComponent {
   effect() {
     this.updateGridCols();
     window.addEventListener('resize', () => this.updateGridCols());
-  }
-  goToCapuleDetails(id: string) {
-    this.router.navigate(['/capsules', id]);
-  }
-  goToLaunchDetails(id: string) {
-    this.router.navigate(['/launches', id]);
   }
 }

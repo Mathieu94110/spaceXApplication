@@ -20,9 +20,10 @@
         <span>
         </span>
         <span card-action>
-          <button mat-raised-button (click)="goToLaunchDetails(launch.id)">
-            Voir le detail
-          </button>
+          <app-button card-upcoming color="primary" size="large" variant="outline" icon="search" iconPosition="end"
+            ariaLabel="boutton retour" (click)="goToLaunchDetails(launch.id)">
+            Voir le détail
+          </app-button>
         </span>
       </app-card-layout>
     </mat-grid-tile>

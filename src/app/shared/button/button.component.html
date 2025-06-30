@@ -1,0 +1,15 @@
+<button mat-button [color]="color()" [disabled]="disabled()" [ngClass]="[
+ sizeClass,
+ variantClass, 
+ colorClass
+]" [attr.aria-label]="ariaLabel()" (click)="handleClick($event)">
+  <span class="vertical-center">
+    @if(icon() && iconPosition() === 'start'){
+    <mat-icon aria-hidden="true" class="mr-10">{{ icon() }}</mat-icon>
+    }
+    <ng-content></ng-content>
+    @if(icon() && iconPosition() === 'end'){
+    <mat-icon aria-hidden="true" class="ml-10">{{ icon() }}</mat-icon>
+    }
+  </span>
+</button>

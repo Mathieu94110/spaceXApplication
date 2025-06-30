@@ -1,8 +1,7 @@
 .button-group {
-  display: block;
-  gap: 12px;
+  display: flex;
+  gap: 20px;
 }
-
 
 button {
   flex: 1 1 auto;

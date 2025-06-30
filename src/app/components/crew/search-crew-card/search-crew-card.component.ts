@@ -16,8 +16,4 @@ export class SearchCrewCardComponent extends CrewComponent {
   ) {
     super();
   }
-
-  goToCrewDetails(id: string) {
-    this.router.navigate(['/crew', id]);
-  }
 }

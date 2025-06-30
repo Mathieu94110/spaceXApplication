@@ -13,7 +13,7 @@
           crewDetails.status | titlecase
           }}</span></p>
       <ul class=" rocket-launch">
-        <span class="rocket-launch-text"><strong>Launches:</strong> </span>
+        <span class="mr-10"><strong>Launches:</strong> </span>
         @for (launche of crewDetails.launches!; track $index) {
         <li>
           <mat-icon (click)="goToLaunchDetails(launche)">rocket_launch</mat-icon>
@@ -22,12 +22,15 @@
       </ul>
     </mat-card-content>
     <mat-card-actions>
-      <a [href]="crewDetails.wikipedia" target="_blank" rel="noopener noreferrer">
-        <button mat-button color="primary">
-          <mat-icon>language</mat-icon> Wikipedia
-        </button>
-      </a>
-      <button mat-button routerLink="/crew" class="crew-details-btn">Retour à la liste</button>
+      <app-button card-upcoming color="primary" size="large" variant="outline" icon="language" iconPosition="end"
+        [disabled]="!crewDetails.wikipedia" ariaLabel="wikipédia" [active]="crewDetails.status"
+        (click)="openWikipedia(crewDetails.wikipedia)">
+        Lien Wikipédia
+      </app-button>
+      <app-button card-upcoming color="primary" size="large" variant="outline" icon="arrow_back" iconPosition="start"
+        [disabled]="false" ariaLabel="Retour à la liste" [active]="crewDetails.status" (click)="goBack()">
+        Retour à la liste
+      </app-button>
     </mat-card-actions>
   </mat-card>
 </div>

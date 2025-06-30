@@ -4,12 +4,12 @@ import { CommonModule } from '@angular/common';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { LaunchesComponent } from '@app/views/launches/launches.component';
 import { CardLayoutComponent } from '@app/layouts/card-layout/card-layout.component';
-import { MatButton } from '@angular/material/button';
+import { ButtonComponent } from '@app/shared/button/button.component';
 
 @Component({
   selector: 'app-all-launches',
   standalone: true,
-  imports: [CommonModule, MatProgressSpinnerModule, MatGridListModule, CardLayoutComponent, MatButton],
+  imports: [CommonModule, MatProgressSpinnerModule, MatGridListModule, CardLayoutComponent, ButtonComponent],
   templateUrl: './all-launches.component.html',
   styleUrls: ['./all-launches.component.scss', '../../../views/launches/launches.component.scss']
 })
@@ -22,8 +22,5 @@ export class AllLaunchesComponent extends LaunchesComponent {
   effect() {
     this.updateGridCols();
     window.addEventListener('resize', () => this.updateGridCols());
-  }
-  goToLaunchDetails(id: string) {
-    this.router.navigate(['/launches', id]);
   }
 }

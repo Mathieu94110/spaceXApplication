@@ -87,13 +87,14 @@
     </mat-card-content>
 
     <mat-card-actions>
-      @if(dragon.wikipedia){
-      <a [href]="dragon.wikipedia" target="_blank" rel="noopener noreferrer">
-        <button mat-button color="primary">
-          <mat-icon>language</mat-icon> Wikipedia
-        </button>
-      </a>
-      } <button mat-button routerLink="/dragons" class="dragon-details-btn">Retour à la liste</button>
+      <app-button card-upcoming color="primary" size="large" variant="outline" icon="article" iconPosition="end"
+        [disabled]="!dragon.wikipedia" ariaLabel="Lien Wikipédia" (click)="openWikipedia(dragon.wikipedia ?? '')">
+        Wikipedia
+      </app-button>
+      <app-button card-upcoming color="primary" size="large" variant="outline" icon="arrow_back" iconPosition="start"
+        [disabled]="!dragon.wikipedia" ariaLabel="boutton retour" (click)="goBack()">
+        Retour à la liste
+      </app-button>
     </mat-card-actions>
   </mat-card>
 </div>

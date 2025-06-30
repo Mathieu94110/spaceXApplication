@@ -22,12 +22,16 @@
           </span>
           <div card-action>
             <div class="button-group">
-              <button mat-raised-button (click)="goToCrewDetails(member.id)">
-                Voir le détail
-              </button>
-              <button mat-raised-button (click)="openWikipedia(member.wikipedia)">
-                Voir sur Wikipedia
-              </button>
+              <app-button card-upcoming color="primary" size="large" variant="outline" icon="search" iconPosition="end"
+                [disabled]="false" ariaLabel="Voir le détail" [active]="member.status"
+                (click)="goToCrewDetails(member.id)">
+                Détails
+              </app-button>
+              <app-button card-upcoming color="primary" size="large" variant="outline" icon="search" iconPosition="end"
+                [disabled]="!member.wikipedia" ariaLabel="Voir le détail" [active]="member.status"
+                (click)="openWikipedia(member.wikipedia)">
+                Wikipedia
+              </app-button>
             </div>
           </div>
         </app-card-layout>

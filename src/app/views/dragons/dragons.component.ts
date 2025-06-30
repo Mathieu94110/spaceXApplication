@@ -44,4 +44,14 @@ export class DragonsComponent {
   goToArticle(dragon: IDragon) {
     if (dragon.wikipedia) window.open(dragon.wikipedia, '_blank')
   }
+  openWikipedia(url: string): void {
+    if (!url) return;
+    window.open(url, '_blank');
+  }
+  goBack() {
+    this.router.navigate(['dragons'])
+  }
+  goToDragonDetails(id: string) {
+    this.router.navigate(['/dragons', id]);
+  }
 }

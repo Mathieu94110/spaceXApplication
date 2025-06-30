@@ -40,7 +40,20 @@ export class CrewComponent {
       this.gridCols = 1;
     }
   }
-  goToArticle(launch: ILaunch) {
-    if (launch.links?.article) window.open(launch.links.article, '_blank')
+  goToArticle(article: string | null) {
+    if (article) window.open(article, '_blank')
+  }
+  openWikipedia(url: string): void {
+    if (!url) return;
+    window.open(url, '_blank');
+  }
+  goToCrewDetails(id: string) {
+    this.router.navigate(['/crew', id]);
+  }
+  goToLaunchDetails(id: string) {
+    this.router.navigate(['/launches', id])
+  }
+  goBack() {
+    this.router.navigate(['/crew']);
   }
 }
